@@ -14,19 +14,34 @@ const TikTokIcon = () => (
 
 const team = [
   {
-    nombre: "Ana Garcia",
-    codigo: "2190001",
+    nombre: "Ashly Sofia Toloza Miranda",
+    codigo: "2241060",
     rol: "Frontend Developer",
     bio: "Estudiante de Ingenieria de Sistemas. Apasionada por el diseño de interfaces limpias.",
-    foto: "https://ui-avatars.com/api/?name=Ana+Garcia&background=f9e8ee&color=7c3a5a&size=200", // pastel palette
+    foto: "/images/isabela.jpg",
   },
   {
-    nombre: "Carlos Lopez",
-    codigo: "2190002",
-    rol: "UI/UX Designer",
-    bio: "Estudiante de Diseño Industrial. Enfocado en la creacion de experiencias centradas en el usuario.",
-    foto: "https://ui-avatars.com/api/?name=Carlos+Lopez&background=e8f5f0&color=7c3a5a&size=200", 
+    nombre: "Andres Felipe Prada Arciniegas",
+    codigo: "2240069",
+    rol: "Desarrollador Frontend",
+    bio: "Estudiante de Ingenieria de Sistemas. enfocado en experiencias intuitivas y diseño responsivo. Apasionado por crear interfaces modernas y funcionales.",
+    foto: "/images/Andres.jpeg", 
+  },
+  {
+    nombre: "Luis Alejandro Vargas Reyes",
+    codigo: "2240081",
+    rol: "Desarrollador Backend",
+    bio: "Estudiante de Ingeniería de Sistemas con afinidad por el desarrollo web. Interesado en integrar diseño y funcionalidad en aplicaciones dinámicas.",
+    foto: "/images/Andres.jpeg",
+  },
+  {
+    nombre: "Isabella Guevara Corzo",
+    codigo: "2240084",
+    rol: "Desarrollador Backend",
+    bio: "Estudiante de Ingeniería de Sistemas con interés en la arquitectura de sistemas y gestión eficiente de datos. Enfocado en construir soluciones robustas y escalables.",
+    foto: "/images/isabela.jpg",
   }
+
 ];
 
 export function Footer() {
