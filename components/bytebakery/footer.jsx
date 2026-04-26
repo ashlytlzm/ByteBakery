@@ -69,13 +69,13 @@ export function Footer() {
               </p>
               <ul className="list-unstyled opacity-75">
                 <li className="d-flex align-items-center gap-2 mb-2">
-                  <MapPin size={18} style={{ color: 'var(--secondary)' }}/> Calle 45 #23-15, Bucaramanga
+                  <MapPin size={18} style={{ color: 'var(--secondary)' }}/> Calle 9 #Carrera 27, Bucaramanga
                 </li>
                 <li className="d-flex align-items-center gap-2 mb-2">
-                  <Phone size={18} style={{ color: 'var(--secondary)' }}/> +57 315 123 4567
+                  <Phone size={18} style={{ color: 'var(--secondary)' }}/> +57 316 5755 356
                 </li>
                 <li className="d-flex align-items-center gap-2 mb-2">
-                  <Mail size={18} style={{ color: 'var(--secondary)' }}/> hola@dulceelite.com
+                  <Mail size={18} style={{ color: 'var(--secondary)' }}/> isabella2240084@correo.uis.edu.co
                 </li>
               </ul>
             </div>
