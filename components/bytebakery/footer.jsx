@@ -32,7 +32,7 @@ const team = [
     codigo: "2240081",
     rol: "Desarrollador Backend",
     bio: "Estudiante de Ingeniería de Sistemas con afinidad por el desarrollo web. Interesado en integrar diseño y funcionalidad en aplicaciones dinámicas.",
-    foto: "/images/Andres.jpeg",
+    foto: "/images/Luis.jpg",
   },
   {
     nombre: "Isabella Guevara Corzo",
