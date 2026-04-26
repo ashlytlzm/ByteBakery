@@ -1,18 +1,21 @@
 "use client";
 
+/* Importamos las herramientas de imagen de Next y componentes comunes */
 import Image from "next/image";
 import { Header } from "@/components/bytebakery/header";
 import { Footer } from "@/components/bytebakery/footer";
 import { motion } from "framer-motion";
 import { Heart, Award, Users, Sparkles } from "lucide-react";
 
+/* Integrantes del equipo academico del proyecto */
 const teamMembers = [
   { name: "Andres Felipe Prada", role: "Lider del Proyecto / Backend", initial: "A" },
   { name: "Ashly Sofia Toloza", role: "Frontend / Diseno", initial: "A" },
   { name: "Isabella Guevara", role: "Frontend / UX", initial: "I" },
-  { name: "Luis Alejandro Vargas", role: "Base de Datos / Backend", initial: "L" },
+  { name: "Luis Alejandro Vargas", role: "Backend", initial: "L" },
 ];
 
+/* Valores fundamentales de la marca ByteBakery */
 const values = [
   {
     icon: Heart,
@@ -41,7 +44,8 @@ export default function NosotrosPage() {
     <>
       <Header />
       <main className="min-h-screen bg-background">
-        {/* Hero Section */}
+        
+        {/* Seccion de bienvenida con imagen de fondo y efecto de degradado */}
         <section className="relative h-96 overflow-hidden">
           <Image
             src="/images/hero-bakery.jpg"
@@ -57,10 +61,10 @@ export default function NosotrosPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="max-w-2xl"
               >
-                <h1 className="font-serif text-4xl md:text-5xl font-bold text-background mb-4">
+                <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
                   Nuestra Historia
                 </h1>
-                <p className="text-background/80 text-lg leading-relaxed">
+                <p className="text-white/90 text-lg leading-relaxed">
                   ByteBakery nacio de la pasion por crear momentos dulces e inolvidables. Somos una reposteria artesanal dedicada a endulzar tus celebraciones.
                 </p>
               </motion.div>
@@ -68,7 +72,7 @@ export default function NosotrosPage() {
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* Seccion detallada sobre la mision y vision de la empresa */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -104,7 +108,7 @@ export default function NosotrosPage() {
           </div>
         </section>
 
-        {/* Values Section */}
+        {/* Seccion de valores corporativos con iconos representativos */}
         <section className="py-20 bg-muted/50">
           <div className="container mx-auto px-4">
             <motion.div
@@ -146,7 +150,7 @@ export default function NosotrosPage() {
           </div>
         </section>
 
-        {/* Team Section */}
+        {/* Seccion de presentacion del equipo de desarrollo */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <motion.div
@@ -188,6 +192,7 @@ export default function NosotrosPage() {
               ))}
             </div>
 
+            {/* Pie de seccion con informacion academica */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -197,7 +202,7 @@ export default function NosotrosPage() {
               <p className="text-muted-foreground">
                 <span className="font-semibold text-foreground">Universidad Industrial de Santander</span>
                 <br />
-                Programacion en la Web - Marzo 2026
+                Programacion en la Web - Abril 2026
               </p>
             </motion.div>
           </div>

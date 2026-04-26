@@ -1,5 +1,6 @@
 "use client";
 
+/* Componente Hero para la seccion de bienvenida de la pagina principal */
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background Image */}
+      {/* Imagen de fondo con efecto de degradado para mejorar legibilidad */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-bakery.jpg"
@@ -21,7 +22,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
       </div>
 
-      {/* Content */}
+      {/* Contenido principal del Hero */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl">
           <motion.div
@@ -29,6 +30,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            {/* Pequeno distintivo decorativo */}
             <div className="flex items-center gap-2 mb-6">
               <Sparkles className="w-5 h-5 text-primary" />
               <span className="text-primary font-medium">Reposteria Artesanal</span>
@@ -42,6 +44,7 @@ export function Hero() {
               Descubre nuestra seleccion de postres artesanales hechos con amor y los mejores ingredientes. Tortas, cupcakes, galletas y mucho mas.
             </p>
 
+            {/* Botones de llamada a la accion principal */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/catalogo">
                 <Button 
@@ -52,7 +55,7 @@ export function Hero() {
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link href="/pedidos-personalizados">
+              <Link href="/pedidos">
                 <Button 
                   size="lg" 
                   variant="outline" 
@@ -64,7 +67,7 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Stats */}
+          {/* Estadisticas rapidas de la marca */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,7 +90,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Decorative Elements */}
+      {/* Elemento decorativo inferior para suavizar la transicion */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
     </section>
   );

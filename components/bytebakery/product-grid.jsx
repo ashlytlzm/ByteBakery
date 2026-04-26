@@ -1,11 +1,13 @@
 "use client";
 
+/* Componente para mostrar la cuadricula de productos con filtros interactivos */
 import { useState } from "react";
 import { ProductCard } from "./product-card";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 
+/* Base de datos local de productos para el catalogo */
 const products = [
   {
     id: 1,
@@ -65,12 +67,15 @@ const products = [
   },
 ];
 
+/* Listado de categorias para los botones de filtrado */
 const categories = ["Todos", "Tortas", "Cupcakes", "Galletas", "Pasteleria Francesa"];
 
 export function ProductGrid() {
+  /* Estados para controlar la categoria seleccionada y la busqueda por texto */
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
 
+  /* Logica de filtrado de productos basada en los estados actuales */
   const filteredProducts = products.filter((product) => {
     const matchesCategory = selectedCategory === "Todos" || product.category === selectedCategory;
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -80,7 +85,8 @@ export function ProductGrid() {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        {/* Header */}
+        
+        {/* Titulo y descripcion de la seccion de productos */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,9 +101,9 @@ export function ProductGrid() {
           </p>
         </motion.div>
 
-        {/* Search and Filters */}
+        {/* Controles de busqueda y filtrado por categorias */}
         <div className="flex flex-col md:flex-row gap-6 mb-10">
-          {/* Search */}
+          {/* Barra de busqueda con icono */}
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <input
@@ -109,7 +115,7 @@ export function ProductGrid() {
             />
           </div>
 
-          {/* Category Filters */}
+          {/* Botones de categorias */}
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Button
@@ -128,14 +134,14 @@ export function ProductGrid() {
           </div>
         </div>
 
-        {/* Products Grid */}
+        {/* Visualizacion de los productos filtrados */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>
 
-        {/* Empty State */}
+        {/* Mensaje informativo cuando no se encuentran coincidencias */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-16">
             <p className="text-muted-foreground text-lg">
@@ -144,7 +150,7 @@ export function ProductGrid() {
           </div>
         )}
 
-        {/* View All Button */}
+        {/* Boton para ver el catalogo completo en otra pagina */}
         <div className="text-center mt-12">
           <Button
             size="lg"

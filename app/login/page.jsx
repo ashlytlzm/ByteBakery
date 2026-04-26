@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+/* Inicio de sesion para ByteBakery */
+import React, { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/bytebakery/header";
 import { Footer } from "@/components/bytebakery/footer";
@@ -9,16 +10,18 @@ import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function LoginPage() {
+  /* Estados para capturar credenciales del usuario */
   const [formData, setFormData] = useState({
     correo: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /* Funcion para validar los campos del formulario de ingreso */
   const validateForm = () => {
-    const newErrors: Record<string, string> = {};
+    const newErrors = {};
 
     if (!formData.correo.trim()) {
       newErrors.correo = "El correo es requerido";
@@ -34,18 +37,19 @@ export default function LoginPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  /* Manejo del envio de datos al servidor simulado */
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!validateForm()) return;
 
     setIsSubmitting(true);
     
-    // Simular envio al servidor
+    /* Simulamos una respuesta del servidor tras 1.5 segundos */
     await new Promise((resolve) => setTimeout(resolve, 1500));
     
     setIsSubmitting(false);
-    // Aqui iria la logica de redireccion despues del login
+    /* En una app real, aqui se guardaria el token y se redirigiria */
   };
 
   return (
@@ -54,12 +58,13 @@ export default function LoginPage() {
       <main className="min-h-screen bg-background py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto">
-            {/* Back Link */}
+            {/* Enlace para volver a la pagina principal */}
             <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8">
               <ArrowLeft className="w-4 h-4" />
               Volver al inicio
             </Link>
 
+            {/* Contenedor animado del formulario de login */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,7 +83,7 @@ export default function LoginPage() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Correo */}
+                {/* Campo para el correo electronico */}
                 <div>
                   <label htmlFor="correo" className="block text-sm font-medium text-foreground mb-2">
                     Correo Electronico
@@ -98,14 +103,14 @@ export default function LoginPage() {
                   )}
                 </div>
 
-                {/* Contrasena */}
+                {/* Campo para la contrasena con opcion de visualizacion */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label htmlFor="password" className="block text-sm font-medium text-foreground">
                       Contrasena
                     </label>
                     <Link href="/recuperar-password" className="text-sm text-primary hover:underline">
-                      Olvidaste tu contrasena?
+                      ¿Olvidaste tu contrasena?
                     </Link>
                   </div>
                   <div className="relative">
@@ -132,7 +137,7 @@ export default function LoginPage() {
                   )}
                 </div>
 
-                {/* Submit Button */}
+                {/* Boton para procesar el inicio de sesion */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -142,9 +147,9 @@ export default function LoginPage() {
                 </Button>
               </form>
 
-              {/* Register Link */}
+              {/* Opcion para nuevos usuarios */}
               <p className="text-center mt-6 text-muted-foreground">
-                No tienes una cuenta?{" "}
+                ¿No tienes una cuenta?{" "}
                 <Link href="/registro" className="text-primary hover:underline font-medium">
                   Registrate
                 </Link>
