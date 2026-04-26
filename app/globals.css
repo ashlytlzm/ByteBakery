@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* ByteBakery Palette & Styling */
+/* Paleta de colores y estilos base de ByteBakery */
 :root {
   --background: #fef4e4; /* crema vainilla */
   --foreground: #3d2b2b; /* cafe */
@@ -27,9 +27,9 @@
   --border: #f9e8ee; /* rosa palido */
   --input: #f9e8ee;
   
-  --radius: 0.5rem; /* Uncodixify rules preserve tight radius */
+  --radius: 0.5rem; /* Radio de borde consistente en toda la app */
 
-  /* Bootstrap Variable Overrides */
+  /* Sobreescritura de variables de Bootstrap para alineacion con la marca */
   --bs-body-bg: var(--background);
   --bs-body-color: var(--foreground);
   --bs-primary: var(--primary);
@@ -39,6 +39,7 @@
   --bs-font-sans-serif: 'Lato', sans-serif;
 }
 
+/* Configuracion del tema para Tailwind CSS */
 @theme inline {
   --font-sans: 'Lato', sans-serif;
   --font-serif: var(--font-playfair), 'Playfair Display', serif;
@@ -50,6 +51,7 @@
   --color-accent: var(--accent);
 }
 
+/* Estilos base para el cuerpo del documento */
 @layer base {
   body {
     @apply bg-background text-foreground;
@@ -57,7 +59,7 @@
   }
 }
 
-/* UNCODIXIFY ENFORCED RULES + CRUMBL-STYLE BUTTONS */
+/* Reglas generales para botones */
 .btn {
   box-shadow: none !important;
   transform: none !important;
@@ -65,7 +67,7 @@
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-/* Crumbl-style: pill black button */
+/* Boton oscuro con estilo redondeado tipo Crumbl */
 .btn-de-dark {
   background-color: #1a1a1a;
   color: #fff;
@@ -81,6 +83,7 @@
   transform: translateY(-1px);
 }
 
+/* Estilos base para tarjetas */
 .card {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
   border-radius: 8px !important;
@@ -88,20 +91,20 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 3D Hover on Cards (Extra requested) */
+/* Efecto 3D al pasar el cursor sobre las tarjetas */
 .card-hover-3d:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(124, 58, 90, 0.15) !important; /* vino shadow */
+  box-shadow: 0 15px 30px rgba(124, 58, 90, 0.15) !important; /* sombra color vino */
 }
 
-/* Typography styles */
+/* Tipografia serif personalizada para titulos */
 .font-serif {
   font-family: "Chango", sans-serif !important;
   font-weight: 400;
   font-style: normal;
 }
 
-/* DROP CAP (Primera letra en color vino y grande) */
+/* Letra capital decorativa para parrafos especiales */
 .drop-cap::first-letter {
   font-size: 3.5rem;
   font-weight: 400;
@@ -114,7 +117,7 @@
   font-style: normal;
 }
 
-/* Shake Animation for Auth Error */
+/* Animacion de sacudida para errores de autenticacion */
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }

@@ -1,19 +1,20 @@
 "use client";
 
+/* Importamos los hooks y componentes necesarios para la pagina de inicio */
 import React, { useRef, useState, useEffect } from "react";
 import { Header } from "@/components/bytebakery/header";
 import { Footer } from "@/components/bytebakery/footer";
-import { Container, Row, Col, Carousel, Accordion, Button, Form, Collapse } from "react-bootstrap";
-import { Volume2, Info, ArrowRight, ShoppingBag, Star } from "lucide-react";
+import { Container, Row, Col, Carousel, Accordion, Button, Form, Collapse, OverlayTrigger, Popover } from "react-bootstrap";
+import { Volume2, Info, ArrowRight, Star } from "lucide-react";
 
-/* ─── Product data with real pastry images ─── */
+/* Datos de los productos destacados para la seccion lateral */
 const specialties = [
   {
     name: "Cheesecake Blueberry",
-    desc: "Base galleta, relleno de queso crema y coulis de arándanos frescos.",
+    desc: "Base galleta, relleno de queso crema y coulis de arandanos frescos.",
     price: "$42.000",
     badge: "FAVORITO",
-    bg: "#f3e8ff",          // lavender bg like Crumbl
+    bg: "#f3e8ff",
     img: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -21,30 +22,30 @@ const specialties = [
     desc: "Mousse ligero con coulis de frambuesa y crema chantilly artesanal.",
     price: "$38.000",
     badge: "NUEVO",
-    bg: "#ffe4ee",          // pink bg
+    bg: "#ffe4ee",
     img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
   },
   {
     name: "Pastel Miel & Vainilla",
-    desc: "Bizcocho vainilla con glaseado de miel dorada y moras frescas.",
+    desc: "Bizcocho vainilla con glaseado de miel dorada y moras frescos.",
     price: "$55.000",
     badge: "PREMIUM",
-    bg: "#fef9e7",          // cream bg
+    bg: "#fef9e7",
     img: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
   },
 ];
 
-/* ─── Carousel slides ─── */
+/* Diapositivas para el carrusel interactivo principal */
 const carouselSlides = [
   {
     title: "Elegancia en cada rebanada",
-    sub: "Colección de primavera — Dulce Élite",
-    cta: "Ver Menú",
+    sub: "Coleccion de primavera — ByteBakery",
+    cta: "Ver Menu",
     bg: "#f9e8ee",
     img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85",
   },
   {
-    title: "Tradición artesanal",
+    title: "Tradicion artesanal",
     sub: "Horneado diariamente con ingredientes de primera",
     cta: "Hacer Pedido",
     bg: "#e8f5f0",
@@ -52,7 +53,7 @@ const carouselSlides = [
   },
   {
     title: "Sabores que enamoran",
-    sub: "Descubre nuestra pastelería clásica y elegante",
+    sub: "Descubre nuestra pasteleria clasica y elegante",
     cta: "Explorar",
     bg: "#fef4e4",
     img: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=85",
@@ -60,14 +61,13 @@ const carouselSlides = [
 ];
 
 export default function Home() {
-  // referencia pal reproductor de audio del taller
+  /* Referencia para el control de audio (si se desea activar en el futuro) */
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showCollapse, setShowCollapse] = useState(false);
-  // este sirve para hacer el efecto de que el pastel del dia aparezca suave
   const [isVisible, setIsVisible] = useState(false);
 
-  // funcion para poner y pausar el sonido del ambiente
+  /* Funcion para activar o desactivar el audio de ambiente */
   const toggleAudio = () => {
     if (audioRef.current) {
       isPlaying ? audioRef.current.pause() : audioRef.current.play();
@@ -75,6 +75,7 @@ export default function Home() {
     }
   };
 
+  /* Efecto para animar la entrada gradual del contenido principal */
   useEffect(() => {
     const t = setTimeout(() => setIsVisible(true), 400);
     return () => clearTimeout(t);
@@ -84,29 +85,26 @@ export default function Home() {
     <main className="d-flex flex-column min-vh-100" style={{ paddingTop: "72px", backgroundColor: "#fff" }}>
       <Header />
 
-      {/* carrusel principal estilo crumbl */}
+      {/* Seccion del carrusel dinamico con imagenes de alta calidad */}
       <section>
         <Carousel fade controls indicators>
           {carouselSlides.map((slide, i) => (
             <Carousel.Item key={i}>
               <div style={{ position: "relative", height: "580px", overflow: "hidden" }}>
-                {/* foto del slide */}
                 <img
                   src={slide.img}
                   alt={slide.title}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
                 />
-                {/* Dark overlay */}
                 <div style={{
                   position: "absolute", inset: 0,
                   background: "linear-gradient(to right, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.1))"
                 }} />
-                {/* Text */}
                 <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
                   <Container>
                     <div style={{ maxWidth: "540px" }}>
                       <p className="text-white mb-2 text-uppercase fw-bold ls-wide" style={{ letterSpacing: "0.2em", fontSize: "0.8rem", opacity: 0.85 }}>
-                        🎂 Dulce Élite · Pastelería Artesanal
+                        🎂 ByteBakery · Pasteleria Artesanal
                       </p>
                       <h1 className="font-serif text-white fw-bold mb-3" style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", lineHeight: 1.1 }}>
                         {slide.title}
@@ -114,7 +112,6 @@ export default function Home() {
                       <p className="text-white mb-4" style={{ fontSize: "1.1rem", opacity: 0.85 }}>
                         {slide.sub}
                       </p>
-                      {/* Crumbl-style pill button: solid black */}
                       <a href="/catalogo" className="btn btn-de-dark px-5 py-3 rounded-pill fw-bold" style={{
                         backgroundColor: "#1a1a1a",
                         color: "#fff",
@@ -135,23 +132,23 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* ══════════════════ WEEKLY MENU TAG (Crumbl-style) ════════════════════════ */}
+      {/* Franja decorativa informativa */}
       <section className="py-4 text-center" style={{ backgroundColor: "#fafafa", borderBottom: "1px solid #f0f0f0" }}>
         <p className="mb-0 fw-bold text-uppercase" style={{ letterSpacing: "0.18em", fontSize: "0.8rem", color: "#999" }}>
           Especialidades de la semana
         </p>
       </section>
 
-      {/* ══════════════════════════════ 3 COLUMNAS ═══════════════════════════════ */}
+      {/* Contenedor principal organizado en tres columnas informativas */}
       <Container className="py-5 my-2">
         <Row className="g-4">
 
-          {/* ── COL IZQUIERDA: Product Cards (Crumbl-style) ── */}
+          {/* Columna Izquierda: Listado de especialidades destacadas */}
           <Col lg={5}>
             <h2 className="font-serif fw-bold mb-1" style={{ color: "var(--primary)", fontSize: "2rem" }}>
               Nuestras Especialidades
             </h2>
-            <p className="text-muted mb-4" style={{ fontSize: "0.9rem" }}>Haz clic en cualquier pastel para más detalles</p>
+            <p className="text-muted mb-4" style={{ fontSize: "0.9rem" }}>Haz clic en cualquier pastel para mas detalles</p>
 
             <div className="d-flex flex-column gap-3">
               {specialties.map((item, i) => (
@@ -165,7 +162,7 @@ export default function Home() {
                     cursor: "pointer",
                   }}
                 >
-                  {/* Product image in circle */}
+                  {/* Miniatura circular del producto */}
                   <div style={{
                     width: "90px", height: "90px", borderRadius: "50%",
                     overflow: "hidden", flexShrink: 0,
@@ -191,7 +188,7 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Collapse info */}
+            {/* Informacion adicional expandible sobre el proceso artesanal */}
             <div className="mt-4">
               <Button
                 onClick={() => setShowCollapse(!showCollapse)}
@@ -200,17 +197,17 @@ export default function Home() {
                 className="w-100 d-flex justify-content-between align-items-center rounded-pill"
                 style={{ fontSize: "0.85rem" }}
               >
-                Ver más sobre nuestras categorías <Info size={15} />
+                Ver mas sobre nuestras categorias <Info size={15} />
               </Button>
               <Collapse in={showCollapse}>
                 <div className="mt-3 p-3 rounded-3 small" style={{ backgroundColor: "var(--muted)", color: "var(--primary)" }}>
-                  Todas las categorías respetan el proceso artesanal: herramientas heredadas de confitería tradicional europea, asegurando que cada pieza sea única en textura y perfil aromático.
+                  Todas las categorias respetan el proceso artesanal: herramientas heredadas de confiteria tradicional europea, asegurando que cada pieza sea unica en textura y perfil aromatico.
                 </div>
               </Collapse>
             </div>
           </Col>
 
-          {/* ── COL CENTRO: Pastel del Día ── */}
+          {/* Columna Central: Producto estrella del dia */}
           <Col lg={4}>
             <div
               style={{
@@ -220,23 +217,22 @@ export default function Home() {
               }}
             >
               <p className="fw-bold text-uppercase mb-1" style={{ letterSpacing: "0.15em", fontSize: "0.75rem", color: "#aaa" }}>
-                ✦ DESTACADO DEL DÍA
+                ✦ DESTACADO DEL DIA
               </p>
-              <h2 className="font-serif fw-bold mb-4" style={{ color: "var(--primary)", fontSize: "1.8rem" }}>Pastel del Día</h2>
+              <h2 className="font-serif fw-bold mb-4" style={{ color: "var(--primary)", fontSize: "1.8rem" }}>Pastel del Dia</h2>
 
               <div className="rounded-4 overflow-hidden shadow-sm" style={{ border: "1px solid #f0f0f0" }}>
-                {/* Product hero image */}
                 <div style={{ height: "280px", backgroundColor: "#fef9e7", overflow: "hidden" }}>
                   <img
                     src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=85"
-                    alt="Pastel del día"
+                    alt="Pastel del dia"
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </div>
 
                 <div className="p-4">
                   <div className="d-flex align-items-center gap-2 mb-1">
-                    {[1,2,3,4,5].map(s => <Star key={s} size={13} fill="#f5a524" color="#f5a524" />)}
+                    {[1, 2, 3, 4, 5].map(s => <Star key={s} size={13} fill="#f5a524" color="#f5a524" />)}
                     <small className="text-muted ms-1">4.9 (128)</small>
                   </div>
                   <h4 className="font-serif fw-bold mb-1" style={{ color: "#1a1a1a" }}>Red Velvet Supreme</h4>
@@ -244,6 +240,25 @@ export default function Home() {
 
                   <div className="d-flex align-items-center justify-content-between">
                     <span className="fw-bold fs-5" style={{ color: "var(--primary)" }}>$55.000</span>
+
+                    {/* Popover con detalles tecnicos del pastel */}
+                    <OverlayTrigger
+                      trigger="click"
+                      placement="top"
+                      overlay={
+                        <Popover id="popover-featured">
+                          <Popover.Header as="h3">DETALLES DEL CHEF</Popover.Header>
+                          <Popover.Body>
+                            ESTE PASTEL FUE DISENADO POR NUESTROS MAESTROS PASTELEROS CON INGREDIENTES 100% ORGANICOS.
+                          </Popover.Body>
+                        </Popover>
+                      }
+                    >
+                      <Button variant="outline-dark" className="rounded-pill px-3 fw-bold" style={{ fontSize: "0.85rem" }}>
+                        Info Rapida
+                      </Button>
+                    </OverlayTrigger>
+
                     <a href="/pedidos" className="btn rounded-pill px-4 fw-bold" style={{
                       backgroundColor: "#1a1a1a", color: "#fff",
                       border: "none", fontSize: "0.85rem"
@@ -256,7 +271,7 @@ export default function Home() {
             </div>
           </Col>
 
-          {/* ── COL DERECHA: Horarios + FAQ + Contacto rápido ── */}
+          {/* Columna Derecha: Seccion de horarios y atencion al cliente */}
           <Col lg={3}>
             <h2 className="font-serif fw-bold mb-4" style={{ color: "var(--primary)", fontSize: "1.5rem" }}>
               Horarios
@@ -266,7 +281,7 @@ export default function Home() {
               <ul className="list-unstyled m-0 small">
                 {[
                   ["Lun – Vie", "08:00 – 19:00"],
-                  ["Sábados", "09:00 – 16:00"],
+                  ["Sabados", "09:00 – 16:00"],
                   ["Domingos", "Cerrado"],
                 ].map(([d, h]) => (
                   <li key={d} className="d-flex justify-content-between py-2 border-bottom">
@@ -277,23 +292,25 @@ export default function Home() {
               </ul>
             </div>
 
+            {/* Preguntas frecuentes integradas con acordeon */}
             <Accordion className="mb-4" style={{ fontSize: "0.875rem" }}>
               <Accordion.Item eventKey="0" className="border-0 rounded-4 overflow-hidden mb-2" style={{ backgroundColor: "#fafafa" }}>
-                <Accordion.Header>Envíos y Entregas</Accordion.Header>
+                <Accordion.Header>Envios y Entregas</Accordion.Header>
                 <Accordion.Body className="bg-white small text-muted">
-                  Enviamos en toda la zona metropolitana con logística refrigerada. Tiempo estimado: 2–4 horas.
+                  Enviamos en toda la zona metropolitana con logistica refrigerada. Tiempo estimado: 2–4 horas.
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="1" className="border-0 rounded-4 overflow-hidden" style={{ backgroundColor: "#fafafa" }}>
-                <Accordion.Header>Política de Devoluciones</Accordion.Header>
+                <Accordion.Header>Politica de Devoluciones</Accordion.Header>
                 <Accordion.Body className="bg-white small text-muted">
-                  Al tratarse de alimentos perecederos, revisa la confirmación 24h antes del despacho.
+                  Al tratarse de alimentos perecederos, revisa la confirmacion 24h antes del despacho.
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
 
+            {/* Formulario rapido de contacto en la barra lateral */}
             <div className="rounded-4 p-4" style={{ backgroundColor: "var(--secondary)", border: "1px solid var(--border)" }}>
-              <h6 className="font-serif fw-bold mb-3" style={{ color: "var(--primary)" }}>Contacto Rápido</h6>
+              <h6 className="font-serif fw-bold mb-3" style={{ color: "var(--primary)" }}>Contacto Rapido</h6>
               <Form>
                 <Form.Control type="text" placeholder="Asunto" className="mb-2 rounded-pill" style={{ fontSize: "0.85rem" }} />
                 <Form.Control type="email" placeholder="Correo" className="mb-3 rounded-pill" style={{ fontSize: "0.85rem" }} />
@@ -307,58 +324,54 @@ export default function Home() {
         </Row>
       </Container>
 
-      {/* ══════════════════════════ MULTIMEDIA SECTION ══════════════════════════ */}
+      {/* Seccion multimedia: El arte de la pasteleria */}
       <section className="py-5" style={{ backgroundColor: "#fafafa", borderTop: "1px solid #f0f0f0" }}>
         <Container>
           <Row className="align-items-center g-5">
+            {/* Texto descriptivo y enlace a musica de ambiente */}
             <Col lg={6}>
-              <p className="mb-2 fw-bold text-uppercase" style={{ letterSpacing: "0.18em", fontSize: "0.75rem", color: "#aaa" }}>
-                ✦ NUESTRO PROCESO
-              </p>
               <h2 className="font-serif fw-bold mb-3 drop-cap" style={{ color: "var(--primary)", fontSize: "2.2rem" }}>
-                El Arte de la Pastelería
+                El Arte de la Pasteleria
               </h2>
               <p className="text-muted mb-4" style={{ lineHeight: "1.8" }}>
-                Acompaña cada mañana con la fragancia del hojaldre recién horneado. Hemos preparado esta zona para que te sumerjas en nuestro proceso artesanal.
+                Acompana cada manana con la fragancia del hojaldre recien horneado. Hemos preparado esta zona para que te sumerjas en nuestro proceso artesanal.
               </p>
 
-              {/* Audio player — Crumbl-style pill bar */}
+              {/* Boton para abrir la lista de reproduccion sugerida en YouTube */}
               <div className="d-flex align-items-center gap-3 p-3 rounded-pill" style={{
                 backgroundColor: "#fff", border: "1px solid #e0e0e0",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.06)", display: "inline-flex"
               }}>
                 <Button
-                  onClick={toggleAudio}
+                  onClick={() => window.open("https://www.youtube.com/watch?v=C5KcdwGSvbw", "_blank")}
                   className="rounded-circle p-0 border-0 d-flex align-items-center justify-content-center"
                   style={{
                     width: "44px", height: "44px",
-                    backgroundColor: isPlaying ? "#dc3545" : "#1a1a1a",
+                    backgroundColor: "#1a1a1a",
                     flexShrink: 0
                   }}
                 >
                   <Volume2 size={20} color="#fff" />
                 </Button>
                 <div style={{ lineHeight: 1.2 }}>
-                  <strong className="d-block" style={{ fontSize: "0.85rem", color: "#1a1a1a" }}>Ambiente del Taller</strong>
-                  <small className="text-muted">{isPlaying ? "▶ Reproduciendo..." : "⏸ Pausado"}</small>
+                  <strong className="d-block" style={{ fontSize: "0.85rem", color: "#1a1a1a" }}>Musica del Taller</strong>
+                  <small className="text-muted">Abrir en YouTube</small>
                 </div>
-                <audio ref={audioRef} loop>
-                  <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
-                </audio>
               </div>
             </Col>
 
+            {/* Video de YouTube integrado para mostrar el proceso creativo */}
             <Col lg={6}>
-              <div className="rounded-4 overflow-hidden shadow-sm">
-                <video
-                  controls
-                  className="w-100 d-block"
-                  style={{ height: "340px", objectFit: "cover" }}
-                  poster="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                >
-                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-                  Tu navegador no soporta video embebido.
-                </video>
+              <div className="rounded-4 overflow-hidden shadow-sm" style={{ height: "340px" }}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/T-9oN1ukY4c"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-view"
+                  allowFullScreen
+                ></iframe>
               </div>
             </Col>
           </Row>

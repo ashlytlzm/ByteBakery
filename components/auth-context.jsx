@@ -1,21 +1,23 @@
 "use client";
 
+/* Contexto para el manejo de la autenticacion simulada */
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
+/* Definicion del contexto de autenticacion */
 const AuthContext = createContext(undefined);
 
-// rutas que solo puedes ver si estas logueado
-const PROTECTED_ROUTES = ["/dashboard", "/recetas", "/admin"];
+/* Listado de rutas protegidas que requieren inicio de sesion */
+const PROTECTED_ROUTES = ["/dashboard", "/recetas", "/admin", "/promociones"];
 
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // isready sirve para saber si ya leimos el localstorage y no sacar al usuario antes de tiempo
+  /* isReady indica si ya se verifico el almacenamiento local */
   const [isReady, setIsReady] = useState(false); 
   const router = useRouter();
   const pathname = usePathname();
 
-  // revisamos si hay sesion guardada apenas carga la app
+  /* Efecto inicial para recuperar la sesion guardada */
   useEffect(() => {
     const saved = localStorage.getItem("auth_mock");
     if (saved === "true") {
@@ -24,7 +26,7 @@ export function AuthProvider({ children }) {
     setIsReady(true);
   }, []);
 
-  // si intenta entrar a algo privado y no esta logueado lo mandamos pal inicio
+  /* Redireccion automatica si se intenta acceder a rutas privadas sin permiso */
   useEffect(() => {
     if (!isReady) return;
     if (PROTECTED_ROUTES.includes(pathname) && !isAuthenticated) {
@@ -32,6 +34,7 @@ export function AuthProvider({ children }) {
     }
   }, [isReady, pathname, isAuthenticated, router]);
 
+  /* Funcion para validar credenciales y crear sesion */
   const login = (usuario, pass) => {
     if (usuario === "Admin" && pass === "1234") {
       setIsAuthenticated(true);
@@ -41,16 +44,18 @@ export function AuthProvider({ children }) {
     return false;
   };
 
+  /* Funcion para cerrar la sesion y limpiar datos locales */
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem("auth_mock");
     router.push("/");
   };
 
-  // bloqueo de pantalla mientras se verifica la sesion para que no parpadee
+  /* Verificamos si la ruta actual es una de las protegidas */
   const isProtected = PROTECTED_ROUTES.includes(pathname);
+  
+  /* Mientras se verifica la sesion, mostramos una pantalla de carga */
   if (isProtected && !isReady) {
-    // Show a minimal loading state instead of the full page
     return (
       <div style={{
         minHeight: "100vh",
@@ -65,7 +70,7 @@ export function AuthProvider({ children }) {
             role="status"
             style={{ color: "var(--primary, #7c3a5a)", width: "2.5rem", height: "2.5rem" }}
           />
-          <p className="mt-3 text-muted" style={{ fontFamily: "Lato, sans-serif" }}>Verificando sesión...</p>
+          <p className="mt-3 text-muted" style={{ fontFamily: "Lato, sans-serif" }}>Verificando sesion...</p>
         </div>
       </div>
     );
@@ -78,6 +83,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+/* Hook personalizado para acceder facilmente al contexto de autenticacion */
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {

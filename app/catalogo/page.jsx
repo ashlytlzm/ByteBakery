@@ -1,5 +1,6 @@
 "use client";
 
+/* Importamos herramientas de React y componentes locales */
 import { useState } from "react";
 import { Header } from "@/components/bytebakery/header";
 import { Footer } from "@/components/bytebakery/footer";
@@ -9,6 +10,7 @@ import { useAuth } from "@/components/auth-context";
 import { useCart } from "@/components/cart-context";
 import { useRouter } from "next/navigation";
 
+/* Listado completo de productos del catalogo */
 const allProducts = [
   {
     id: 1, name: "Torta de Fresas", price: 85000, category: "Tortas",
@@ -41,7 +43,7 @@ const allProducts = [
     bg: "#f3e8ff", stars: 4.9,
   },
   {
-    id: 7, name: "Tarta de Limón", price: 48000, category: "Tortas",
+    id: 7, name: "Tarta de Limon", price: 48000, category: "Tortas",
     img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     bg: "#fffde7", stars: 4.5,
   },
@@ -52,25 +54,30 @@ const allProducts = [
   },
 ];
 
+/* Categorias disponibles para filtrar */
 const categories = ["Todos", "Tortas", "Cupcakes", "Galletas", "Pasteleria Francesa"];
 
 export default function CatalogoPage() {
+  /* Obtenemos el estado de autenticacion y funcion del carrito */
   const { isAuthenticated } = useAuth();
   const { addItem } = useCart();
   const router = useRouter();
+  
+  /* Estados para el filtrado y busqueda */
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [showLoginAlert, setShowLoginAlert] = useState(false);
 
+  /* Aplicamos los filtros de categoria y texto de busqueda */
   const filteredProducts = allProducts.filter((p) => {
     const matchCat = selectedCategory === "Todos" || p.category === selectedCategory;
     const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchCat && matchSearch;
   });
 
+  /* Funcion para manejar la adicion al carrito */
   const handleOrder = (product) => {
     addItem(product);
-    // Show a small success feedback - open cart or go to pedidos
     if (!isAuthenticated) {
       setShowLoginAlert(true);
     }
@@ -81,21 +88,21 @@ export default function CatalogoPage() {
       <Header />
       <main style={{ paddingTop: "72px", backgroundColor: "#fff", minHeight: "100vh" }}>
 
-        {/* ── Hero Banner ── */}
+        {/* Banner principal del catalogo */}
         <div className="py-5 text-center text-white" style={{
           background: "linear-gradient(135deg, var(--primary) 0%, #5a2840 100%)"
         }}>
           <Container>
             <p className="mb-2 text-uppercase fw-bold" style={{ letterSpacing: "0.2em", fontSize: "0.75rem", opacity: 0.8 }}>
-              ✦ Dulce Élite
+              ✦ ByteBakery
             </p>
-            <h1 className="font-serif fw-bold mb-2" style={{ fontSize: "2.8rem" }}>Nuestro Menú</h1>
-            <p className="mb-0 opacity-75">Productos elaborados artesanalmente. Pedidos con 48h de anticipación.</p>
+            <h1 className="font-serif fw-bold mb-2" style={{ fontSize: "2.8rem" }}>Nuestro Menu</h1>
+            <p className="mb-0 opacity-75">Productos elaborados artesanalmente. Pedidos con 48h de anticipacion.</p>
           </Container>
         </div>
 
         <Container className="py-5">
-          {/* ── Filtros ── */}
+          {/* Seccion de filtros y busqueda */}
           <Row className="mb-5 align-items-center g-3">
             <Col md={5}>
               <InputGroup>
@@ -133,7 +140,7 @@ export default function CatalogoPage() {
             </Col>
           </Row>
 
-          {/* ── Product Grid ── */}
+          {/* Cuadricula de productos */}
           <Row className="g-4">
             {filteredProducts.map((product) => (
               <Col sm={6} md={4} lg={3} key={product.id}>
@@ -141,7 +148,7 @@ export default function CatalogoPage() {
                   className="h-100 border-0 card-hover-3d overflow-hidden"
                   style={{ borderRadius: "16px", boxShadow: "0 2px 12px rgba(0,0,0,0.07)", cursor: "pointer" }}
                 >
-                  {/* Product Image */}
+                  {/* Imagen del producto con efecto de zoom */}
                   <div style={{ height: "200px", backgroundColor: product.bg, overflow: "hidden", position: "relative" }}>
                     <img
                       src={product.img}
@@ -153,7 +160,6 @@ export default function CatalogoPage() {
                   </div>
 
                   <Card.Body className="p-3 d-flex flex-column">
-                    {/* Category tag */}
                     <span className="text-uppercase fw-bold mb-1" style={{ fontSize: "0.65rem", color: "var(--primary)", letterSpacing: "0.1em" }}>
                       {product.category}
                     </span>
@@ -161,7 +167,7 @@ export default function CatalogoPage() {
                       {product.name}
                     </Card.Title>
 
-                    {/* Stars */}
+                    {/* Calificacion por estrellas */}
                     <div className="d-flex align-items-center gap-1 mb-2">
                       {[1,2,3,4,5].map(s => (
                         <Star key={s} size={11} fill={s <= Math.round(product.stars) ? "#f5a524" : "#e0e0e0"} color={s <= Math.round(product.stars) ? "#f5a524" : "#e0e0e0"} />
@@ -173,7 +179,7 @@ export default function CatalogoPage() {
                       ${product.price.toLocaleString("es-CO")}
                     </p>
 
-                    {/* Order button */}
+                    {/* Boton para agregar al carrito */}
                     <button
                       onClick={() => handleOrder(product)}
                       className="btn w-100 rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2"
@@ -187,11 +193,12 @@ export default function CatalogoPage() {
               </Col>
             ))}
 
+            {/* Mensaje cuando no hay resultados de busqueda */}
             {filteredProducts.length === 0 && (
               <Col xs={12} className="text-center py-5">
                 <Search size={48} color="#ccc" className="mb-3" />
                 <h4 className="font-serif" style={{ color: "#999" }}>Sin resultados</h4>
-                <p className="text-muted">Intenta con otra búsqueda o categoría.</p>
+                <p className="text-muted">Intenta con otra busqueda o categoria.</p>
               </Col>
             )}
           </Row>
@@ -199,15 +206,15 @@ export default function CatalogoPage() {
       </main>
       <Footer />
 
-      {/* ── Modal: Requiere Login ── */}
+      {/* Alerta modal para usuarios no autenticados */}
       <Modal show={showLoginAlert} onHide={() => setShowLoginAlert(false)} centered>
         <Modal.Body className="text-center py-5 px-4">
           <div className="d-flex align-items-center justify-content-center rounded-circle mx-auto mb-4"
             style={{ width: "72px", height: "72px", backgroundColor: "var(--secondary)" }}>
             <Lock size={32} color="var(--primary)" />
           </div>
-          <h4 className="font-serif fw-bold mb-2" style={{ color: "var(--primary)" }}>Inicia Sesión Primero</h4>
-          <p className="text-muted mb-4">Para realizar un pedido necesitas una cuenta de Dulce Élite.</p>
+          <h4 className="font-serif fw-bold mb-2" style={{ color: "var(--primary)" }}>Inicia Sesion Primero</h4>
+          <p className="text-muted mb-4">Para realizar un pedido necesitas una cuenta de ByteBakery.</p>
           <div className="d-flex gap-3 justify-content-center">
             <Button variant="outline-secondary" className="rounded-pill px-4" onClick={() => setShowLoginAlert(false)}>
               Cancelar
@@ -215,9 +222,9 @@ export default function CatalogoPage() {
             <Button
               className="rounded-pill px-4 fw-bold border-0"
               style={{ backgroundColor: "#1a1a1a", color: "#fff" }}
-              onClick={() => { setShowLoginAlert(false); /* header login modal will be triggered */ }}
+              onClick={() => { setShowLoginAlert(false); }}
             >
-              Ir a Iniciar Sesión
+              Ir a Iniciar Sesion
             </Button>
           </div>
         </Modal.Body>
