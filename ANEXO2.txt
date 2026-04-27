@@ -1,0 +1,32 @@
+·· ANEXO 2 — FUNCIONALIDADES IMPLEMENTADAS SATISFACTORIAMENTE Y NO IMPLEMENTADAS
+
+FUNCIONALIDADES IMPLEMENTADAS
+Responsive design. (Tablets, celulares y desktop).	
+Portada con títulos, logo y barra de menú fija.
+Diseño tres columnas en la página principal.
+Efectos visuales.
+Modales de Bootstrap para login y registro.
+Componente collapse en la portada.
+Menú dropdown en la barra de navegación.
+Pie de página (Footer) con la información básica y de redes sociales del equipo.
+Router (next.js app router) con rutas públicas y privadas.
+Protección de rutas privadas.
+Simulación de login sin base de datos.
+Carrusel de imágenes en la portada.
+Acordeón para preguntas frecuentes.
+Videos embebidos en la sección de arte.
+Sonido de ambiente con reproducción estilo pill.
+Drop cap.
+Logo actualizado.
+Formularios usando React-Bootstrap.
+Captcha de seguridad.
+Organización de carpetas.
+Lupa para ver el contenido del password con ícono de ojo.
+
+FUNCIONALIDADES NO IMPLEMENTADAS/PENDIENTES
+Conexión a base de datos.
+Pasarela de pagos.
+Carga de imágenes al servidor.
+
+Para visualizar cada funcionalidad con su respectiva explicación, ver el apartado de ‘Explicación de todas las funcionalidades implementadas’
+en el archivo .pdf adjunto en el proyecto.
