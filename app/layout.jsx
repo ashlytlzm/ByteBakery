@@ -1,6 +1,5 @@
 /* Importar fuentes */
 import { Playfair_Display, Poppins } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './globals.css'
 import { AuthProvider } from '@/components/auth-context'
@@ -24,7 +23,6 @@ const poppins = Poppins({
 export const metadata = {
   title: 'ByteBakery - Reposteria Artesanal',
   description: 'Descubre los postres mas deliciosos hechos con amor. Tortas, cupcakes, galletas, macarons y mas. Pedidos personalizados para tus celebraciones.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
@@ -50,7 +48,6 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <CartProvider>
             {children}
-            {process.env.NODE_ENV === 'production' && <Analytics />}
           </CartProvider>
         </AuthProvider>
       </body>

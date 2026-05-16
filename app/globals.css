@@ -129,3 +129,35 @@
 .animate-shake {
   animation: shake 0.4s ease-in-out;
 }
+
+/* 
+   FIX: Correccion de visibilidad para el Navbar de Bootstrap con Tailwind v4
+   Asegura que el menu se despliegue en pantallas grandes (lg > 992px)
+   Y tambien en moviles cuando se activa el estado 'show'
+*/
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse.collapse {
+    display: flex !important;
+    height: auto !important;
+    visibility: visible !important;
+  }
+}
+
+/* Fix para el menu desplegable en moviles */
+.navbar-collapse.collapse.show {
+  display: block !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Asegura que el boton de menu (toggle) sea visible en moviles */
+.navbar-toggler {
+  display: block !important;
+}
+
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none !important;
+  }
+}
