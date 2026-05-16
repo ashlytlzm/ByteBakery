@@ -12,7 +12,7 @@ export default function AdminPage() {
       <main className="flex-grow-1 py-5">
         <Container>
           <div className="bg-white p-5 rounded shadow-sm border border-secondary text-center">
-            <h2 className="font-serif fw-bold text-primary mb-3">Panel de Administracion</h2>
+            <h2 className="font-serif fw-bold text-primary mb-3">Panel de Administración</h2>
             <p className="text-muted">Restringido para personal de ByteBakery.</p>
           </div>
         </Container>

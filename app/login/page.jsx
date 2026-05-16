@@ -1,6 +1,6 @@
 "use client";
 
-/* Inicio de sesion para ByteBakery */
+/* Inicio de sesión para ByteBakery */
 import React, { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/bytebakery/header";
@@ -19,7 +19,7 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  /* Funcion para validar los campos del formulario de ingreso */
+  /* Función para validar los campos del formulario de ingreso */
   const validateForm = () => {
     const newErrors = {};
 
@@ -30,7 +30,7 @@ export default function LoginPage() {
     }
 
     if (!formData.password) {
-      newErrors.password = "La contrasena es requerida";
+      newErrors.password = "La contraseña es requerida";
     }
 
     setErrors(newErrors);
@@ -49,7 +49,7 @@ export default function LoginPage() {
     await new Promise((resolve) => setTimeout(resolve, 1500));
     
     setIsSubmitting(false);
-    /* En una app real, aqui se guardaria el token y se redirigiria */
+    /* En una app real, aquí se guardaría el token y se redirigiría */
   };
 
   return (
@@ -78,15 +78,15 @@ export default function LoginPage() {
                   Bienvenido de vuelta
                 </h1>
                 <p className="text-muted-foreground">
-                  Inicia sesion para continuar
+                  Inicia sesión para continuar
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Campo para el correo electronico */}
+                {/* Campo para el correo electrónico */}
                 <div>
                   <label htmlFor="correo" className="block text-sm font-medium text-foreground mb-2">
-                    Correo Electronico
+                    Correo Electrónico
                   </label>
                   <input
                     type="email"
@@ -103,14 +103,14 @@ export default function LoginPage() {
                   )}
                 </div>
 
-                {/* Campo para la contrasena con opcion de visualizacion */}
+                {/* Campo para la contraseña con opción de visualización */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label htmlFor="password" className="block text-sm font-medium text-foreground">
-                      Contrasena
+                      Contraseña
                     </label>
                     <Link href="/recuperar-password" className="text-sm text-primary hover:underline">
-                      ¿Olvidaste tu contrasena?
+                      ¿Olvidaste tu contraseña?
                     </Link>
                   </div>
                   <div className="relative">
@@ -122,7 +122,7 @@ export default function LoginPage() {
                       className={`w-full px-4 py-3 pr-12 rounded-xl border ${
                         errors.password ? "border-destructive" : "border-border"
                       } bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent`}
-                      placeholder="Tu contrasena"
+                      placeholder="Tu contraseña"
                     />
                     <button
                       type="button"
@@ -137,21 +137,21 @@ export default function LoginPage() {
                   )}
                 </div>
 
-                {/* Boton para procesar el inicio de sesion */}
+                {/* Botón para procesar el inicio de sesión */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-12 text-lg"
                 >
-                  {isSubmitting ? "Iniciando sesion..." : "Iniciar Sesion"}
+                  {isSubmitting ? "Iniciando sesión..." : "Iniciar Sesión"}
                 </Button>
               </form>
 
-              {/* Opcion para nuevos usuarios */}
+              {/* Opción para nuevos usuarios */}
               <p className="text-center mt-6 text-muted-foreground">
                 ¿No tienes una cuenta?{" "}
                 <Link href="/registro" className="text-primary hover:underline font-medium">
-                  Registrate
+                  Regístrate
                 </Link>
               </p>
             </motion.div>

@@ -18,39 +18,37 @@ const team = [
     nombre: "Ashly Sofia Toloza Miranda",
     codigo: "2241060",
     rol: "Frontend Developer",
-    bio: "Estudiante de Ingenieria de Sistemas. Apasionada por el diseno de interfaces limpias.",
+    bio: "Estudiante de Ingenieria de Sistemas. Apasionada por el diseño de interfaces limpias y funcionales.",
     foto: "/images/Ashly.png",
   },
   {
-    nombre: "Andres Felipe Prada Arciniegas",
+    nombre: "Andrés Felipe Prada Arciniégas",
     codigo: "2240069",
-    rol: "Desarrollador Frontend",
-    bio: "Estudiante de Ingenieria de Sistemas. Enfocado en experiencias intuitivas y diseno responsivo. Apasionado por crear interfaces modernas y funcionales.",
+    rol: "Desarrollador Backend",
+    bio: "Estudiante de Ingenieria de Sistemas con interés en la arquitectura de sistemas y gestión eficiente de datos. Enfocado en construir soluciones robustas y escalables.",
     foto: "/images/Andres.jpeg",
   },
   {
     nombre: "Luis Alejandro Vargas Reyes",
     codigo: "2240081",
     rol: "Desarrollador Backend",
-    bio: "Estudiante de Ingenieria de Sistemas con afinidad por el desarrollo web. Interesado en integrar diseno y funcionalidad en aplicaciones dinamicas.",
+    bio: "Estudiante de Ingenieria de Sistemas con afinidad por el desarrollo web. Interesado en integrar diseño y funcionalidad en aplicaciones dinámicas.",
     foto: "/images/Luis.jpg",
   },
   {
     nombre: "Isabella Guevara Corzo",
     codigo: "2240084",
-    rol: "Desarrollador Backend",
-    bio: "Estudiante de Ingenieria de Sistemas con interes en la arquitectura de sistemas y gestion eficiente de datos. Enfocado en construir soluciones robustas y escalables.",
+    rol: "Desarrollador Frontend",
+    bio: "Estudiante de Ingenieria de Sistemas. Enfocada en experiencias intuitivas y diseño responsivo. Apasionada por crear interfaces modernas y funcionales.",
     foto: "/images/isabela.jpg",
   }
 ];
 
-/* Componente principal del pie de pagina */
 export function Footer() {
-  /* Estados para controlar el modal del equipo */
   const [showTeamModal, setShowTeamModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
 
-  /* Funcion para mostrar los detalles de un estudiante */
+  /* Mostrar los detalles de un estudiante */
   const handleShowStudent = (estudiante) => {
     setSelectedStudent(estudiante);
     setShowTeamModal(true);
@@ -68,7 +66,7 @@ export function Footer() {
                 ByteBakery
               </span>
               <p className="opacity-75 mb-4" style={{ fontFamily: 'var(--bs-font-sans-serif)' }}>
-                Reposteria clasica y elegante con los mas finos ingredientes y devocion por los detalles.
+                Repostería clásica y elegante con los más finos ingredientes y devoción por los detalles.
               </p>
               <ul className="list-unstyled opacity-75">
                 <li className="d-flex align-items-center gap-2 mb-2">
@@ -86,7 +84,7 @@ export function Footer() {
 
           {/* Columna 2: Equipo Universitario */}
           <Col md={6} lg={4}>
-            <h5 className="font-serif mb-4" style={{ color: 'var(--secondary)' }}>Nuestro Equipo Universitario</h5>
+            <h5 className="font-serif mb-4" style={{ color: 'var(--secondary)' }}>Nuestro Equipo</h5>
             <ul className="list-unstyled">
               {team.map((estudiante, idx) => (
                 <li key={idx} className="mb-3">
@@ -107,7 +105,7 @@ export function Footer() {
 
           {/* Columna 3: Redes Sociales y Newsletter */}
           <Col md={6} lg={4}>
-            <h5 className="font-serif mb-4" style={{ color: 'var(--secondary)' }}>Conecta con Nosotros</h5>
+            <h5 className="font-serif mb-4" style={{ color: 'var(--secondary)' }}>Nuestras Redes Sociales</h5>
             <div className="d-flex gap-3 mb-4">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white opacity-75 hover-opacity-100 transition">
                 <Instagram size={28} />
@@ -123,12 +121,12 @@ export function Footer() {
               </a>
             </div>
 
-            <h6 className="font-serif mt-2 mb-3" style={{ color: 'var(--secondary)' }}>Suscribite al Newsletter</h6>
-            <Form onSubmit={(e) => { e.preventDefault(); alert("Suscrito!"); }}>
+            <h6 className="font-serif mt-2 mb-3" style={{ color: 'var(--secondary)' }}>Suscríbete al Newsletter</h6>
+            <Form onSubmit={(e) => { e.preventDefault(); alert("¡Suscrito!"); }}>
               <InputGroup>
                 <Form.Control
                   type="email"
-                  placeholder="Tu correo electronico"
+                  placeholder="Tu correo electrónico"
                   className="rounded-start-pill"
                   required
                 />
@@ -140,7 +138,6 @@ export function Footer() {
           </Col>
         </Row>
 
-        {/* Derechos de autor */}
         <div className="border-top mt-5 pt-4 text-center opacity-50" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
           <small>&copy; 2026 ByteBakery.</small>
         </div>
@@ -167,7 +164,7 @@ export function Footer() {
               <h4 className="fw-bold mb-1" style={{ color: 'var(--foreground)' }}>{selectedStudent.nombre}</h4>
               <p className="mb-2 fw-medium" style={{ color: 'var(--primary)' }}>{selectedStudent.rol}</p>
               <div className="badge bg-light text-dark border mb-3">
-                <span className="opacity-75">Codigo:</span> {selectedStudent.codigo}
+                <span className="opacity-75">Código:</span> {selectedStudent.codigo}
               </div>
               <p className="px-3" style={{ color: 'var(--foreground)' }}>
                 {selectedStudent.bio}

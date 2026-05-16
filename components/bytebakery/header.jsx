@@ -1,6 +1,6 @@
 "use client";
 
-/* Importamos los componentes y hooks necesarios */
+/* Importar componentes y hooks */
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { User, Eye, EyeOff, ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
@@ -20,9 +20,8 @@ function pwChecks(pw) {
   };
 }
 
-/* Componente de la barra de navegacion principal */
 export function Header() {
-  /* Obtenemos funciones de autenticacion y estado del carrito */
+  /* Funciones de autenticación y estado del carrito */
   const { isAuthenticated, login, logout } = useAuth();
   const { items, removeItem, updateQty, totalItems, totalPrice, clearCart } = useCart();
 
@@ -31,7 +30,7 @@ export function Header() {
   const [showCart, setShowCart] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
 
-  /* Estados para el formulario de inicio de sesion */
+  /* Estados para el formulario de inicio de sesión */
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
@@ -53,15 +52,15 @@ export function Header() {
 
   /* Estados para las notificaciones (Toast) */
   const [showToast, setShowToast] = useState(false);
-  const [toastMsg, setToastMsg] = useState("Sesion iniciada correctamente.");
+  const [toastMsg, setToastMsg] = useState("Sesión iniciada correctamente.");
 
-  /* Funcion para generar nuevos retos de captcha */
+  /* Función para generar nuevos retos de captcha */
   const newCaptcha = () => ({
     a: Math.floor(Math.random() * 9) + 1,
     b: Math.floor(Math.random() * 9) + 1,
   });
 
-  /* Efecto para resetear los formularios cuando se abre el modal o cambia la pestana */
+  /* Resetear los formularios */
   useEffect(() => {
     if (showAuth) {
       setLoginCaptcha(newCaptcha());
@@ -74,7 +73,7 @@ export function Header() {
     }
   }, [showAuth, activeTab]);
 
-  /* Manejador para el envio del formulario de login */
+  /* Manejar el envio del formulario de login */
   const handleLogin = (e) => {
     e.preventDefault();
     if (parseInt(loginCaptchaVal) !== loginCaptcha.a + loginCaptcha.b) {
@@ -97,7 +96,7 @@ export function Header() {
     }
   };
 
-  /* Manejador para el envio del formulario de registro */
+  /* Manejar el envio del formulario de registro */
   const handleRegister = (e) => {
     e.preventDefault();
     const checks = pwChecks(regPw);
@@ -116,7 +115,7 @@ export function Header() {
       setRegCaptchaVal("");
       return;
     }
-    /* Simulamos el exito del registro en esta fase academica */
+    /* Registro exitoso */
     setRegSuccess(true);
     setToastMsg("¡Cuenta creada! Ahora inicia sesion.");
     setShowToast(true);
@@ -127,10 +126,10 @@ export function Header() {
 
   return (
     <>
-      {/* Barra de navegacion superior fija */}
+      {/* Barra de navegación */}
       <Navbar bg="white" expand="lg" fixed="top" className="border-bottom" style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}>
         <Container>
-          {/* Marca de la empresa con logo */}
+          {/* Logo */}
           <Navbar.Brand as={Link} href="/" className="font-serif fw-bold d-flex align-items-center gap-2" style={{ color: "var(--primary)" }}>
             <img src="/ByeBakery.png" alt="ByteBakery Logo" width="32" height="32" />
             ByteBakery
@@ -138,11 +137,11 @@ export function Header() {
 
           <Navbar.Toggle />
           <Navbar.Collapse>
-            {/* Enlaces centrales del menu */}
+            {/* Enlaces del menú */}
             <Nav className="mx-auto gap-1">
               <Nav.Link as={Link} href="/">Inicio</Nav.Link>
               <NavDropdown title="Productos" id="prod-dd">
-                <NavDropdown.Item as={Link} href="/catalogo">Catalogo</NavDropdown.Item>
+                <NavDropdown.Item as={Link} href="/catalogo">Catálogo</NavDropdown.Item>
                 {isAuthenticated && (
                   <>
                     <NavDropdown.Divider />
@@ -155,9 +154,9 @@ export function Header() {
               <Nav.Link as={Link} href="/contacto">Contacto</Nav.Link>
             </Nav>
 
-            {/* Area de usuario y carrito a la derecha */}
+            {/* Área de usuario y carrito */}
             <Nav className="align-items-center gap-2">
-              {/* Boton del carrito de compras */}
+              {/* Botón del carrito de compras */}
               <Button variant="outline-secondary" className="position-relative rounded-pill px-3 py-2" onClick={() => setShowCart(true)}>
                 <ShoppingCart size={18} />
                 {totalItems > 0 && (
@@ -171,7 +170,7 @@ export function Header() {
                 )}
               </Button>
 
-              {/* Boton de login o acceso al dashboard */}
+              {/* Botón de inicio de sesión o acceso al dashboard */}
               {isAuthenticated ? (
                 <>
                   <Nav.Link as={Link} href="/dashboard" className="fw-bold" style={{ color: "var(--primary)" }}>
@@ -195,17 +194,17 @@ export function Header() {
         </Container>
       </Navbar>
 
-      {/* Componente para notificaciones emergentes */}
+      {/* Notificaciones */}
       <ToastContainer position="top-end" className="p-3" style={{ zIndex: 1200 }}>
         <Toast show={showToast} onClose={() => setShowToast(false)} delay={3500} autohide bg="dark">
           <Toast.Body className="text-white fw-medium">{toastMsg}</Toast.Body>
         </Toast>
       </ToastContainer>
 
-      {/* Modal de autenticacion con pestanas de Login y Registro */}
+      {/* Modal de inicio de sesión y registro */}
       <Modal show={showAuth} onHide={() => setShowAuth(false)} centered size="sm">
         <div style={{ position: "relative", overflow: "hidden" }}>
-          {/* Fondo decorativo con desenfoque */}
+          {/* Fondo */}
           <div style={{
             position: "absolute", inset: 0,
             backgroundImage: 'url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=70")',
@@ -219,7 +218,7 @@ export function Header() {
 
             <div className="bg-white rounded-4 p-4">
               <Tabs activeKey={activeTab} onSelect={setActiveTab} className="mb-4 nav-justified">
-                <Tab eventKey="login" title="Iniciar Sesion">
+                <Tab eventKey="login" title="Iniciar Sesión">
                   <Form onSubmit={handleLogin}>
                     {loginError && (
                       <div className={`alert alert-danger py-2 small ${loginShake ? "animate-shake" : ""}`}>
@@ -232,7 +231,7 @@ export function Header() {
                         onChange={e => setUsername(e.target.value)} required size="sm" />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                      <Form.Label className="small fw-bold">Contrasena</Form.Label>
+                      <Form.Label className="small fw-bold">Contraseña</Form.Label>
                       <div className="input-group input-group-sm">
                         <Form.Control
                           type={showPw ? "text" : "password"} placeholder="••••••••"
@@ -242,7 +241,7 @@ export function Header() {
                         </Button>
                       </div>
                     </Form.Group>
-                    {/* Verificacion de seguridad mediante CAPTCHA visual */}
+                    {/* Verificacion de seguridad mediante CAPTCHA */}
                     <div className="p-3 rounded-3 mb-3" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6" }}>
                       <p className="small fw-bold mb-2" style={{ color: "var(--primary)" }}>Verificacion de seguridad</p>
                       <div className="d-flex align-items-center gap-2">
@@ -274,12 +273,12 @@ export function Header() {
                           onChange={e => setRegName(e.target.value)} required size="sm" />
                       </Form.Group>
                       <Form.Group className="mb-2">
-                        <Form.Label className="small fw-bold">Correo electronico</Form.Label>
+                        <Form.Label className="small fw-bold">Correo electrónico</Form.Label>
                         <Form.Control type="email" placeholder="correo@ejemplo.com" value={regEmail}
                           onChange={e => setRegEmail(e.target.value)} required size="sm" />
                       </Form.Group>
                       <Form.Group className="mb-1">
-                        <Form.Label className="small fw-bold">Contrasena</Form.Label>
+                        <Form.Label className="small fw-bold">Contraseña</Form.Label>
                         <div className="input-group input-group-sm">
                           <Form.Control type={showRegPw ? "text" : "password"} placeholder="Minimo 8 caracteres"
                             value={regPw} onChange={e => setRegPw(e.target.value)} required />
@@ -289,13 +288,13 @@ export function Header() {
                         </div>
                       </Form.Group>
 
-                      {/* Lista de requisitos para la seguridad de la contrasena */}
+                      {/* Lista de requisitos para la seguridad de la contraseña */}
                       {regPw.length > 0 && (
                         <ul className="list-unstyled small mt-2 mb-2 ps-1">
                           {[
-                            [checks.length, "Minimo 8 caracteres"],
-                            [checks.upper, "Al menos 1 mayuscula"],
-                            [checks.number, "Al menos 1 numero"],
+                            [checks.length, "Mínimo 8 caracteres"],
+                            [checks.upper, "Al menos 1 mayúscula"],
+                            [checks.number, "Al menos 1 número"],
                           ].map(([ok, label]) => (
                             <li key={label} style={{ color: ok ? "#198754" : "#dc3545" }}>
                               {ok ? "✓" : "✗"} {label}
@@ -305,17 +304,17 @@ export function Header() {
                       )}
 
                       <Form.Group className="mb-3">
-                        <Form.Label className="small fw-bold">Confirmar contrasena</Form.Label>
-                        <Form.Control size="sm" type="password" placeholder="Repite la contrasena"
+                        <Form.Label className="small fw-bold">Confirmar contraseña</Form.Label>
+                        <Form.Control size="sm" type="password" placeholder="Repite la contraseña"
                           value={regPwConfirm} onChange={e => setRegPwConfirm(e.target.value)} required />
                         {regPwConfirm && regPw !== regPwConfirm && (
-                          <small className="text-danger">Las contrasenas no coinciden.</small>
+                          <small className="text-danger">Las contraseñas no coinciden.</small>
                         )}
                       </Form.Group>
 
                       {/* Segundo reto de seguridad para el registro */}
                       <div className="p-3 rounded-3 mb-3" style={{ backgroundColor: "#f8f9fa", border: "1px solid #dee2e6" }}>
-                        <p className="small fw-bold mb-2" style={{ color: "var(--primary)" }}>Verificacion de seguridad</p>
+                        <p className="small fw-bold mb-2" style={{ color: "var(--primary)" }}>Verificación de seguridad</p>
                         <div className="d-flex align-items-center gap-2">
                           <span className="fw-bold">{regCaptcha.a} + {regCaptcha.b} =</span>
                           <Form.Control type="number" style={{ width: "70px" }} size="sm"
@@ -336,7 +335,7 @@ export function Header() {
         </div>
       </Modal>
 
-      {/* Modal lateral para gestionar el carrito de compras */}
+      {/* Modal del carrito de compras */}
       <Modal show={showCart} onHide={() => setShowCart(false)} placement="end" className="modal-cart">
         <Modal.Header closeButton className="border-0 pb-0">
           <Modal.Title className="font-serif fw-bold" style={{ color: "var(--primary)" }}>
@@ -348,7 +347,7 @@ export function Header() {
           {items.length === 0 ? (
             <div className="text-center py-5">
               <ShoppingCart size={52} color="#ccc" className="mb-3" />
-              <p className="text-muted">Tu carrito esta vacio.</p>
+              <p className="text-muted">Tu carrito está vacío.</p>
               <Button variant="link" onClick={() => setShowCart(false)} as={Link} href="/catalogo"
                 style={{ color: "var(--primary)" }}>
                 Ver productos →
@@ -356,7 +355,7 @@ export function Header() {
             </div>
           ) : (
             <>
-              {/* Listado de items agregados al carrito */}
+              {/* Productos agregados */}
               {items.map(item => (
                 <div key={item.id} className="d-flex align-items-center gap-3 py-3 border-bottom">
                   <img src={item.img} alt={item.name}
@@ -382,7 +381,7 @@ export function Header() {
                 </div>
               ))}
 
-              {/* Seccion de resumen y botones de accion */}
+              {/* Resumen y botones de acción */}
               <div className="pt-4">
                 <div className="d-flex justify-content-between fw-bold fs-5 mb-4">
                   <span>Total</span>

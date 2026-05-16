@@ -1,11 +1,5 @@
 "use client";
 
-/* 
-   Este es el componente del carrito de compras 
-   Se encarga de mostrar los productos que el usuario desea llevar
-   Y calcular el total a pagar
-*/
-
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,19 +11,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/components/cart-context";
 
 export default function CarritoPage() {
-  /* Obtenemos los datos del carrito desde el contexto global */
   const { items, removeItem, updateQty, totalPrice, totalItems } = useCart();
 
-  /* Calculamos el costo de envio: gratis por compras superiores a 100 mil pesos */
   const costoEnvio = totalPrice > 100000 ? 0 : 15000;
 
   return (
     <main className="min-vh-100 bg-light" style={{ paddingTop: "100px" }}>
-      {/* Barra de navegacion superior */}
+      {/* Navbar */}
       <Header />
       
       <Container className="py-5">
-        {/* Titulo de la seccion con animacion suave */}
+        {/* Título de la sección con animación */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,20 +34,20 @@ export default function CarritoPage() {
         </motion.div>
 
         {items.length === 0 ? (
-          /* Mensaje decorativo cuando el carrito no tiene productos */
+          /* Mensaje cuando el carrito no tiene productos */
           <div className="text-center py-5 bg-white rounded-4 shadow-sm border">
             <ShoppingBag size={80} className="mb-4 opacity-20" />
-            <h2 className="font-serif h3 mb-3">TU CARRITO ESTA VACIO</h2>
-            <p className="text-muted mb-4">¿Aun no has probado nuestras delicias? ¡No esperes mas!</p>
+            <h2 className="font-serif h3 mb-3">TU CARRITO ESTÁ VACÍO</h2>
+            <p className="text-muted mb-4">¿Aún no has probado nuestras delicias? ¡No esperes más!</p>
             <Link href="/catalogo">
               <Button variant="dark" className="rounded-pill px-5 py-3 fw-bold">
-                VER CATALOGO DE PRODUCTOS
+                VER CATÁLOGO DE PRODUCTOS
               </Button>
             </Link>
           </div>
         ) : (
           <Row className="g-4">
-            {/* Listado de productos en el lado izquierdo */}
+            {/* Listado de productos */}
             <Col lg={8}>
               <div className="d-flex flex-column gap-3">
                 <AnimatePresence>
@@ -70,7 +62,7 @@ export default function CarritoPage() {
                       <Card className="border-0 shadow-sm rounded-4 overflow-hidden">
                         <Card.Body className="p-3">
                           <Row className="align-items-center g-3">
-                            {/* Imagen miniatura del producto */}
+                            {/* Imagen miniatura */}
                             <Col xs={3} md={2}>
                               <div className="rounded-3 overflow-hidden" style={{ aspectRatio: "1/1" }}>
                                 <img 
@@ -128,22 +120,22 @@ export default function CarritoPage() {
 
               {/* Enlace para regresar a la tienda */}
               <Link href="/catalogo" className="btn btn-link mt-4 text-decoration-none text-muted d-flex align-items-center gap-2">
-                <ArrowLeft size={16} /> SEGUIR COMPRANDO DELICIAS
+                <ArrowLeft size={16} /> SEGUIR COMPRANDO
               </Link>
             </Col>
 
-            {/* Resumen de costos en el lado derecho */}
+            {/* Resumen de costos */}
             <Col lg={4}>
               <Card className="border-0 shadow-sm rounded-4 sticky-top" style={{ top: "100px" }}>
                 <Card.Body className="p-4">
-                  <h2 className="font-serif h4 mb-4">RESUMEN DEL PEDIDO</h2>
+                  <h2 className="font-serif h4 mb-4">RESÚMEN DEL PEDIDO</h2>
                   
                   <div className="d-flex justify-content-between mb-3 text-muted">
                     <span>Subtotal</span>
                     <span>${totalPrice.toLocaleString("es-CO")}</span>
                   </div>
                   <div className="d-flex justify-content-between mb-3 text-muted">
-                    <span>Envio</span>
+                    <span>Envío</span>
                     <span>
                       {costoEnvio === 0 ? (
                         <span className="text-success fw-bold">GRATIS</span>
@@ -166,7 +158,7 @@ export default function CarritoPage() {
                   {costoEnvio > 0 && (
                     <div className="p-3 rounded-3 bg-light mb-4 small d-flex gap-2 align-items-center text-muted">
                       <AlertCircle size={16} className="text-primary flex-shrink-0" />
-                      Compra ${(100000 - totalPrice).toLocaleString("es-CO")} mas para tener ENVIO GRATIS
+                      Compra ${(100000 - totalPrice).toLocaleString("es-CO")} más para tener ENVÍO GRATIS
                     </div>
                   )}
 

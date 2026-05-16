@@ -1,4 +1,4 @@
-/* Importamos las fuentes de Google para el diseno visual */
+/* Importar fuentes */
 import { Playfair_Display, Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,7 +6,7 @@ import './globals.css'
 import { AuthProvider } from '@/components/auth-context'
 import { CartProvider } from '@/components/cart-context'
 
-/* Configuracion de las tipografias principales de la marca */
+/* Configuración tipografías */
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
   variable: '--font-playfair',
@@ -20,7 +20,7 @@ const poppins = Poppins({
   display: 'swap',
 });
 
-/* Metadatos para el SEO y configuracion de iconos del navegador */
+/* Metadatos SEO */
 export const metadata = {
   title: 'ByteBakery - Reposteria Artesanal',
   description: 'Descubre los postres mas deliciosos hechos con amor. Tortas, cupcakes, galletas, macarons y mas. Pedidos personalizados para tus celebraciones.',
@@ -35,18 +35,18 @@ export const metadata = {
   },
 }
 
-/* Componente base de la estructura de la aplicacion */
+/* Componente base */
 export default function RootLayout({ children }) {
   return (
     <html lang="es" data-scroll-behavior="smooth" className={`${playfair.variable} ${poppins.variable} bg-background`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Fuentes externas para titulos y elementos decorativos */}
+        {/* Fuentes externas */}
         <link href="https://fonts.googleapis.com/css2?family=Chango&family=Molle:ital@1&family=Oi&family=Smythe&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans antialiased text-body bg-light">
-        {/* Proveedores globales para la gestion de autenticacion y carrito */}
+        {/* Proveedores globales */}
         <AuthProvider>
           <CartProvider>
             {children}

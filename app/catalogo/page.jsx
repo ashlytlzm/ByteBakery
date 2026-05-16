@@ -1,6 +1,6 @@
 "use client";
 
-/* Importamos herramientas de React y componentes locales */
+/* Importar React y componentes locales */
 import { useState } from "react";
 import { Header } from "@/components/bytebakery/header";
 import { Footer } from "@/components/bytebakery/footer";
@@ -10,7 +10,7 @@ import { useAuth } from "@/components/auth-context";
 import { useCart } from "@/components/cart-context";
 import { useRouter } from "next/navigation";
 
-/* Listado completo de productos del catalogo */
+/* Listado de productos del catálogo */
 const allProducts = [
   {
     id: 1, name: "Torta de Fresas", price: 85000, category: "Tortas",
@@ -28,12 +28,12 @@ const allProducts = [
     bg: "#f5e6f8", stars: 4.8,
   },
   {
-    id: 4, name: "Macarons Franceses", price: 42000, category: "Pasteleria Francesa",
+    id: 4, name: "Macarons Franceses", price: 42000, category: "Pastelería Francesa",
     img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     bg: "#e8f5f0", stars: 5.0,
   },
   {
-    id: 5, name: "Croissant de Mantequilla", price: 8500, category: "Pasteleria Francesa",
+    id: 5, name: "Croissant de Mantequilla", price: 8500, category: "Pastelería Francesa",
     img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     bg: "#fef4e4", stars: 4.6,
   },
@@ -43,7 +43,7 @@ const allProducts = [
     bg: "#f3e8ff", stars: 4.9,
   },
   {
-    id: 7, name: "Tarta de Limon", price: 48000, category: "Tortas",
+    id: 7, name: "Tarta de Limón", price: 48000, category: "Tortas",
     img: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     bg: "#fffde7", stars: 4.5,
   },
@@ -55,27 +55,27 @@ const allProducts = [
 ];
 
 /* Categorias disponibles para filtrar */
-const categories = ["Todos", "Tortas", "Cupcakes", "Galletas", "Pasteleria Francesa"];
+const categories = ["Todos", "Tortas", "Cupcakes", "Galletas", "Pastelería Francesa"];
 
 export default function CatalogoPage() {
-  /* Obtenemos el estado de autenticacion y funcion del carrito */
+  /* Estado de autenticación y función del carrito */
   const { isAuthenticated } = useAuth();
   const { addItem } = useCart();
   const router = useRouter();
   
-  /* Estados para el filtrado y busqueda */
+  /* Estados para el filtrado y búsqueda */
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchQuery, setSearchQuery] = useState("");
   const [showLoginAlert, setShowLoginAlert] = useState(false);
 
-  /* Aplicamos los filtros de categoria y texto de busqueda */
+  /* Filtros de categoría y texto de búsqueda */
   const filteredProducts = allProducts.filter((p) => {
     const matchCat = selectedCategory === "Todos" || p.category === selectedCategory;
     const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchCat && matchSearch;
   });
 
-  /* Funcion para manejar la adicion al carrito */
+  /* Función para manejar la adición al carrito */
   const handleOrder = (product) => {
     addItem(product);
     if (!isAuthenticated) {
@@ -88,7 +88,7 @@ export default function CatalogoPage() {
       <Header />
       <main style={{ paddingTop: "72px", backgroundColor: "#fff", minHeight: "100vh" }}>
 
-        {/* Banner principal del catalogo */}
+        {/* Banner principal catálogo */}
         <div className="py-5 text-center text-white" style={{
           background: "linear-gradient(135deg, var(--primary) 0%, #5a2840 100%)"
         }}>
@@ -96,13 +96,13 @@ export default function CatalogoPage() {
             <p className="mb-2 text-uppercase fw-bold" style={{ letterSpacing: "0.2em", fontSize: "0.75rem", opacity: 0.8 }}>
               ✦ ByteBakery
             </p>
-            <h1 className="font-serif fw-bold mb-2" style={{ fontSize: "2.8rem" }}>Nuestro Menu</h1>
-            <p className="mb-0 opacity-75">Productos elaborados artesanalmente. Pedidos con 48h de anticipacion.</p>
+            <h1 className="font-serif fw-bold mb-2" style={{ fontSize: "2.8rem" }}>Nuestro Menú</h1>
+            <p className="mb-0 opacity-75">Productos elaborados artesanalmente. Pedidos con 48h de anticipación.</p>
           </Container>
         </div>
 
         <Container className="py-5">
-          {/* Seccion de filtros y busqueda */}
+          {/* Sección de filtros y búsqueda */}
           <Row className="mb-5 align-items-center g-3">
             <Col md={5}>
               <InputGroup>
@@ -140,7 +140,7 @@ export default function CatalogoPage() {
             </Col>
           </Row>
 
-          {/* Cuadricula de productos */}
+          {/* Cuadrícula de productos */}
           <Row className="g-4">
             {filteredProducts.map((product) => (
               <Col sm={6} md={4} lg={3} key={product.id}>
@@ -167,7 +167,7 @@ export default function CatalogoPage() {
                       {product.name}
                     </Card.Title>
 
-                    {/* Calificacion por estrellas */}
+                    {/* Calificación por estrellas */}
                     <div className="d-flex align-items-center gap-1 mb-2">
                       {[1,2,3,4,5].map(s => (
                         <Star key={s} size={11} fill={s <= Math.round(product.stars) ? "#f5a524" : "#e0e0e0"} color={s <= Math.round(product.stars) ? "#f5a524" : "#e0e0e0"} />
@@ -179,13 +179,13 @@ export default function CatalogoPage() {
                       ${product.price.toLocaleString("es-CO")}
                     </p>
 
-                    {/* Boton para agregar al carrito */}
+                    {/* Botón agregar al carrito */}
                     <button
                       onClick={() => handleOrder(product)}
                       className="btn w-100 rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2"
                       style={{ backgroundColor: "#1a1a1a", color: "#fff", border: "none", fontSize: "0.82rem", padding: "10px" }}
                     >
-                      <ShoppingCart size={15} />
+                      <ShoppingCart size={15} color="#fff"/>
                       Agregar al carrito
                     </button>
                   </Card.Body>
@@ -193,12 +193,12 @@ export default function CatalogoPage() {
               </Col>
             ))}
 
-            {/* Mensaje cuando no hay resultados de busqueda */}
+            {/* Mensaje en caso de no hay resultados de búsqueda */}
             {filteredProducts.length === 0 && (
               <Col xs={12} className="text-center py-5">
                 <Search size={48} color="#ccc" className="mb-3" />
                 <h4 className="font-serif" style={{ color: "#999" }}>Sin resultados</h4>
-                <p className="text-muted">Intenta con otra busqueda o categoria.</p>
+                <p className="text-muted">Intenta con otra búsqueda o categoría.</p>
               </Col>
             )}
           </Row>
@@ -206,14 +206,14 @@ export default function CatalogoPage() {
       </main>
       <Footer />
 
-      {/* Alerta modal para usuarios no autenticados */}
+      {/* Alerta Modal Usuarios no Autenticados */}
       <Modal show={showLoginAlert} onHide={() => setShowLoginAlert(false)} centered>
         <Modal.Body className="text-center py-5 px-4">
           <div className="d-flex align-items-center justify-content-center rounded-circle mx-auto mb-4"
             style={{ width: "72px", height: "72px", backgroundColor: "var(--secondary)" }}>
             <Lock size={32} color="var(--primary)" />
           </div>
-          <h4 className="font-serif fw-bold mb-2" style={{ color: "var(--primary)" }}>Inicia Sesion Primero</h4>
+          <h4 className="font-serif fw-bold mb-2" style={{ color: "var(--primary)" }}>Inicia Sesión Primero</h4>
           <p className="text-muted mb-4">Para realizar un pedido necesitas una cuenta de ByteBakery.</p>
           <div className="d-flex gap-3 justify-content-center">
             <Button variant="outline-secondary" className="rounded-pill px-4" onClick={() => setShowLoginAlert(false)}>
@@ -224,7 +224,7 @@ export default function CatalogoPage() {
               style={{ backgroundColor: "#1a1a1a", color: "#fff" }}
               onClick={() => { setShowLoginAlert(false); }}
             >
-              Ir a Iniciar Sesion
+              Ir a Iniciar Sesión
             </Button>
           </div>
         </Modal.Body>

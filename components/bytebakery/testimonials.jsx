@@ -1,27 +1,27 @@
 "use client";
 
-/* Componente para mostrar los testimonios de clientes satisfechos */
+/* Muestra los testimonios */
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 
-/* Listado de testimonios de clientes reales (o simulados) */
+/* Listado de testimonios */
 const testimonials = [
   {
-    name: "Maria Garcia",
+    name: "María García",
     role: "Cliente Frecuente",
-    content: "¡Los mejores postres de la ciudad! La torta de fresas que encargue para el cumpleanos de mi hija fue simplemente espectacular. Todos quedaron encantados.",
+    content: "¡Los mejores postres de la ciudad! La torta de fresas que encargue para el cumpleaños de mi hija fue simplemente espectacular. Todos quedaron encantados.",
     rating: 5,
   },
   {
-    name: "Carlos Rodriguez",
+    name: "Carlos Rodríguez",
     role: "Cliente Corporativo",
-    content: "Excelente servicio para eventos empresariales. Los macarons y cupcakes que ordenamos para nuestra reunion fueron un exito total.",
+    content: "Excelente servicio para eventos empresariales. Los macarons y cupcakes que ordenamos para nuestra reunión fueron un éxito total.",
     rating: 5,
   },
   {
-    name: "Ana Martinez",
+    name: "Ana Martínez",
     role: "Cliente",
-    content: "La atencion al cliente es increible y los productos son de primera calidad. ¡Las galletas de chocolate son adictivas!",
+    content: "La atención al cliente es increíble y los productos son de primera calidad. ¡Las galletas de chocolate son adictivas!",
     rating: 5,
   },
 ];
@@ -31,7 +31,7 @@ export function Testimonials() {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         
-        {/* Titulo y descripcion de la seccion de testimonios */}
+        {/* Título y descripción de la sección de testimonios */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,11 +42,11 @@ export function Testimonials() {
             Lo que dicen nuestros <span className="text-primary">clientes</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            La satisfaccion de nuestros clientes es nuestra mayor recompensa
+            La satisfacción de nuestros clientes es nuestra mayor recompensa
           </p>
         </motion.div>
 
-        {/* Cuadricula de tarjetas de testimonios con calificacion por estrellas */}
+        {/* Cuadrícula de tarjetas de testimonios con calificación por estrellas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
@@ -57,10 +57,10 @@ export function Testimonials() {
               transition={{ delay: index * 0.1 }}
               className="bg-card rounded-2xl p-8 border border-border relative"
             >
-              {/* Icono decorativo de comillas */}
+              {/* Ícono decorativo de comillas */}
               <Quote className="absolute top-6 right-6 w-10 h-10 text-primary/20" />
               
-              {/* Visualizacion de la calificacion con estrellas */}
+              {/* Visualización de la calificación con estrellas */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-accent text-accent" />
@@ -72,7 +72,7 @@ export function Testimonials() {
                 &quot;{testimonial.content}&quot;
               </p>
 
-              {/* Informacion del autor del testimonio */}
+              {/* Información del autor */}
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
                   <span className="font-serif font-bold text-primary text-lg">

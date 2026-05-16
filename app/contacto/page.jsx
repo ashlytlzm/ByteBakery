@@ -8,7 +8,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { MapPin as MapPinIcon, Phone as PhoneIcon, Mail as MailIcon, Clock as ClockIcon, Send as SendIcon, Check as CheckIcon } from "lucide-react";
 
 export default function ContactoPage() {
-  /* Estado para capturar los datos del formulario */
+  /* Estado captura datos del formulario */
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
@@ -16,15 +16,15 @@ export default function ContactoPage() {
     mensaje: "",
   });
   
-  /* Estados para controlar el proceso de envio */
+  /* Estados que controlan proceso de envío */
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  /* Funcion para procesar el envio del formulario */
+  /* Procesar el envío del formulario */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    /* Simulamos el envio de datos con una espera */
+    /* Simulación del envío con espera */
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setSubmitSuccess(true);
@@ -32,28 +32,28 @@ export default function ContactoPage() {
 
   return (
     <>
-      {/* Componente de cabecera fija */}
+      {/* Cabecera de navegación */}
       <Header />
       
       <main className="min-vh-100 py-5" style={{ backgroundColor: "var(--background)", paddingTop: "76px" }}>
         <Container className="py-4">
           
-          {/* Titulo y descripcion de la pagina de contacto */}
+          {/* Título y descripción de la página de contacto */}
           <div className="text-center mb-5">
             <h1 className="font-serif fw-bold mb-3" style={{ color: "var(--primary)", fontSize: "2.8rem" }}>
-              Contactanos
+              Contáctanos
             </h1>
             <p className="text-muted fs-5 mx-auto" style={{ maxWidth: "600px" }}>
-              ¿Tienes alguna pregunta o quieres hacer un pedido especial? Estamos aqui para ayudarte.
+              ¿Tienes alguna pregunta o quieres hacer un pedido especial? Estamos aquí para ayudarte.
             </p>
           </div>
 
           <Row className="g-5">
-            {/* Columna Izquierda: Formulario interactivo */}
+            {/* Columna Izquierda: Formulario */}
             <Col lg={6}>
               <div className="bg-white p-5 rounded shadow-sm border" style={{ borderColor: "var(--border)" }}>
                 {submitSuccess ? (
-                  /* Mensaje de exito despues del envio */
+                  /* Mensaje de éxito */
                   <div className="text-center py-5">
                     <div
                       className="d-flex align-items-center justify-content-center rounded-circle mx-auto mb-4"
@@ -79,7 +79,7 @@ export default function ContactoPage() {
                 ) : (
                   <>
                     <h2 className="font-serif fw-bold mb-4" style={{ color: "var(--foreground)" }}>
-                      Envianos un mensaje
+                      Envíanos un mensaje
                     </h2>
                     <Form onSubmit={handleSubmit}>
                       <Row>
@@ -94,7 +94,7 @@ export default function ContactoPage() {
                           />
                         </Form.Group>
                         <Form.Group as={Col} md={6} className="mb-3">
-                          <Form.Label className="fw-medium">Telefono</Form.Label>
+                          <Form.Label className="fw-medium">Teléfono</Form.Label>
                           <Form.Control
                             type="tel"
                             placeholder="+57 300 000 0000"
@@ -105,7 +105,7 @@ export default function ContactoPage() {
                       </Row>
 
                       <Form.Group className="mb-3">
-                        <Form.Label className="fw-medium">Correo Electronico</Form.Label>
+                        <Form.Label className="fw-medium">Correo Electrónico</Form.Label>
                         <Form.Control
                           type="email"
                           required
@@ -121,7 +121,7 @@ export default function ContactoPage() {
                           as="textarea"
                           rows={5}
                           required
-                          placeholder="Cuentanos en que podemos ayudarte..."
+                          placeholder="Cuéntanos en qué podemos ayudarte..."
                           value={formData.mensaje}
                           onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
                         />
@@ -147,17 +147,17 @@ export default function ContactoPage() {
               </div>
             </Col>
 
-            {/* Columna Derecha: Informacion de contacto y horarios */}
+            {/* Columna Derecha: Información de contacto y horarios */}
             <Col lg={6}>
               <div className="bg-white p-5 rounded shadow-sm border mb-4" style={{ borderColor: "var(--border)" }}>
                 <h2 className="font-serif fw-bold mb-4" style={{ color: "var(--foreground)" }}>
-                  Informacion de Contacto
+                  Información de Contacto
                 </h2>
                 <div className="d-flex flex-column gap-4">
                   {/* Listado de medios de contacto */}
                   {[
-                    { icon: <MapPinIcon size={22} />, titulo: "Ubicacion", lineas: ["Cl. 9 #27, Bucaramanga", "Santander, Colombia"] },
-                    { icon: <PhoneIcon size={22} />, titulo: "Telefono", lineas: ["+57 300 5716250"] },
+                    { icon: <MapPinIcon size={22} />, titulo: "Ubicación", lineas: ["Cl. 9 #27, Bucaramanga", "Santander, Colombia"] },
+                    { icon: <PhoneIcon size={22} />, titulo: "Teléfono", lineas: ["+57 300 5716250"] },
                     { icon: <MailIcon size={22} />, titulo: "Correo", lineas: ["ashly2241060@correo.uis.edu.co"] },
                   ].map(({ icon, titulo, lineas }) => (
                     <div key={titulo} className="d-flex align-items-start gap-3">
@@ -178,10 +178,10 @@ export default function ContactoPage() {
                 </div>
               </div>
 
-              {/* Seccion de horarios de atencion */}
+              {/* Seccion de horarios de atención */}
               <div className="bg-white p-5 rounded shadow-sm border" style={{ borderColor: "var(--border)" }}>
                 <h2 className="font-serif fw-bold mb-4" style={{ color: "var(--foreground)" }}>
-                  Horario de Atencion
+                  Horario de Atención
                 </h2>
                 <div className="d-flex align-items-start gap-3">
                   <div
@@ -192,7 +192,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <p className="mb-1"><span className="fw-bold">Lunes a Viernes:</span> 8:00 AM - 7:00 PM</p>
-                    <p className="mb-1"><span className="fw-bold">Sabados:</span> 9:00 AM - 4:00 PM</p>
+                    <p className="mb-1"><span className="fw-bold">Sábados:</span> 9:00 AM - 4:00 PM</p>
                     <p className="mb-0"><span className="fw-bold">Domingos:</span> Cerrado</p>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export default function ContactoPage() {
         </Container>
       </main>
       
-      {/* Componente de pie de pagina */}
+      {/* Pie de página */}
       <Footer />
     </>
   );

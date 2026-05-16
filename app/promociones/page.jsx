@@ -42,7 +42,7 @@ export default function PromocionesPage() {
       <Header />
 
       <Container className="py-5">
-        {/* Encabezado animado de la pagina */}
+        {/* Encabezado animado */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,18 +50,18 @@ export default function PromocionesPage() {
           className="text-center mb-5"
         >
           <Badge bg="dark" className="rounded-pill px-3 py-2 mb-3 text-uppercase ls-wide">
-            Area Exclusiva
+            Área Exclusiva
           </Badge>
           <h1 className="font-serif display-4 fw-bold mb-3" style={{ color: "var(--primary)" }}>
             Promociones Especiales
           </h1>
           <p className="lead text-muted mx-auto" style={{ maxWidth: "700px" }}>
-            Como cliente de ByteBakery, tienes acceso a estos beneficios unicos.
-            Utiliza los codigos al finalizar tu pedido.
+            Como cliente de ByteBakery, tienes acceso a estos beneficios únicos.
+            Utiliza los códigos al finalizar tu pedido.
           </p>
         </motion.div>
 
-        {/* Cuadricula de tarjetas de promocion */}
+        {/* Tarjetas de promoción */}
         <Row className="g-4">
           {promos.map((promo, i) => (
             <Col lg={4} md={6} key={promo.id}>
@@ -90,18 +90,18 @@ export default function PromocionesPage() {
                       {promo.desc}
                     </Card.Text>
 
-                    {/* Visualizacion del codigo promocional */}
+                    {/* Visualización del código promocional */}
                     <div className="bg-light p-3 rounded-3 text-center border border-dashed mb-3">
-                      <small className="d-block text-uppercase fw-bold text-muted mb-1">Codigo</small>
+                      <small className="d-block text-uppercase fw-bold text-muted mb-1">Código</small>
                       <code className="h5 fw-bold text-dark ls-wide">{promo.code}</code>
                     </div>
 
                     <Button
                       variant="dark"
                       className="w-100 rounded-pill fw-bold py-2"
-                      onClick={() => alert("Codigo copiado: " + promo.code)}
+                      onClick={() => alert("Código copiado: " + promo.code)}
                     >
-                      Copiar Codigo
+                      Copiar Código
                     </Button>
                   </Card.Body>
                 </Card>
@@ -110,11 +110,11 @@ export default function PromocionesPage() {
           ))}
         </Row>
 
-        {/* Seccion de contacto para eventos especiales */}
+        {/* Contacto para eventos especiales */}
         <section className="mt-5 p-5 rounded-4 bg-white shadow-sm border border-dashed text-center">
           <Gift size={48} className="mb-3 opacity-50" />
           <h3 className="font-serif fw-bold mb-2">¿Tienes un evento grande?</h3>
-          <p className="text-muted mb-4">Contacta con nosotros para presupuestos personalizados y mas descuentos.</p>
+          <p className="text-muted mb-4">Contacta con nosotros para presupuestos personalizados y más descuentos.</p>
           <Button variant="outline-dark" href="/contacto" className="rounded-pill px-5 fw-bold">
             Hablar con un asesor
           </Button>

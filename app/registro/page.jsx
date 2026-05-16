@@ -1,6 +1,6 @@
 "use client";
 
-/* Aca nos registramos en la aplicacion */
+/* Registro */
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Header } from "@/components/bytebakery/header";
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Check, X, RefreshCw, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/* Funcion para generar un captcha aleatorio */
+/* Captcha */
 function generateCaptcha() {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
   let captcha = "";
@@ -35,18 +35,18 @@ export default function RegistroPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  /* Generar captcha al cargar la pagina */
+  /* Generar captcha */
   useEffect(() => {
     setCaptcha(generateCaptcha());
   }, []);
 
-  /* Funcion para refrescar el captcha */
+  /* Refrescar captcha */
   const refreshCaptcha = () => {
     setCaptcha(generateCaptcha());
     setFormData((prev) => ({ ...prev, captchaInput: "" }));
   };
 
-  /* Validar requisitos de la contrasena */
+  /* Requisitos de la contrasena */
   const validatePassword = useCallback((password) => {
     return {
       length: password.length >= 8,
@@ -57,7 +57,7 @@ export default function RegistroPage() {
 
   const passwordValidations = validatePassword(formData.password);
 
-  /* Validacion general del formulario */
+  /* Validacion general */
   const validateForm = () => {
     const newErrors = {};
 
@@ -89,7 +89,7 @@ export default function RegistroPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  /* Manejo del envio del formulario */
+  /* Envio del formulario */
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -97,11 +97,11 @@ export default function RegistroPage() {
 
     setIsSubmitting(true);
     
-    /* Simulamos una peticion al servidor */
+    /* Petición al servidor */
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      /* Despues de 2 segundos redirigimos al login */
+      /* Redirigir al login */
       setTimeout(() => {
         window.location.href = "/login";
       }, 2000);
@@ -143,7 +143,7 @@ export default function RegistroPage() {
           >
             <div className="text-center mb-8">
               <h1 className="font-serif text-3xl font-bold text-foreground mb-2">Crear Cuenta</h1>
-              <p className="text-muted-foreground">Unete a la familia ByteBakery</p>
+              <p className="text-muted-foreground">Únete a la familia ByteBakery</p>
             </div>
 
             <AnimatePresence mode="wait">
@@ -159,7 +159,7 @@ export default function RegistroPage() {
                   </div>
                   <h2 className="text-2xl font-bold mb-2">¡Registro Exitoso!</h2>
                   <p className="text-muted-foreground">
-                    Tu cuenta ha sido creada. Te redirigiremos al inicio de sesion en un momento...
+                    Tu cuenta ha sido creada. Te redirigiremos al inicio de sesión en un momento...
                   </p>
                 </motion.div>
               ) : (
@@ -186,7 +186,7 @@ export default function RegistroPage() {
                   {/* Correo electronico */}
                   <div>
                     <label htmlFor="correo" className="block text-sm font-medium text-foreground mb-2">
-                      Correo Electronico
+                      Correo Electrónico
                     </label>
                     <input
                       type="email"
@@ -205,7 +205,7 @@ export default function RegistroPage() {
                   {/* Contrasena */}
                   <div>
                     <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
-                      Contrasena
+                      Contraseña
                     </label>
                     <div className="relative">
                       <input
@@ -234,11 +234,11 @@ export default function RegistroPage() {
                       </div>
                       <div className={`flex items-center gap-2 text-sm ${passwordValidations.uppercase ? "text-green-600" : "text-muted-foreground"}`}>
                         {passwordValidations.uppercase ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
-                        Una mayuscula
+                        Una mayúscula
                       </div>
                       <div className={`flex items-center gap-2 text-sm ${passwordValidations.number ? "text-green-600" : "text-muted-foreground"}`}>
                         {passwordValidations.number ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
-                        Un numero
+                        Un número
                       </div>
                     </div>
                   </div>
@@ -246,7 +246,7 @@ export default function RegistroPage() {
                   {/* Confirmar contrasena */}
                   <div>
                     <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-2">
-                      Confirmar Contrasena
+                      Confirmar Contraseña
                     </label>
                     <div className="relative">
                       <input
@@ -317,7 +317,7 @@ export default function RegistroPage() {
             <p className="text-center mt-6 text-muted-foreground">
               ¿Ya tienes una cuenta?{" "}
               <Link href="/login" className="text-primary hover:underline font-medium">
-                Inicia sesion aqui
+                Inicia sesion aquí
               </Link>
             </p>
           </motion.div>

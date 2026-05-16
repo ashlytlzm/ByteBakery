@@ -1,6 +1,6 @@
 "use client";
 
-/* Componente de tarjeta de producto individual */
+/* Tarjeta de producto */
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Heart } from "lucide-react";
 
 export function ProductCard({ name, description, price, image, category }) {
-  /* Estado para gestionar si el producto ha sido marcado como favorito */
+  /* Gestionar si el producto ha sido marcado como favorito */
   const [isLiked, setIsLiked] = useState(false);
 
   return (
@@ -28,14 +28,14 @@ export function ProductCard({ name, description, price, image, category }) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
         
-        {/* Etiqueta flotante con la categoria del postre */}
+        {/* Etiqueta con la categoría del postre */}
         <div className="absolute top-4 left-4">
           <span className="bg-primary/90 text-primary-foreground text-xs font-medium px-3 py-1.5 rounded-full">
             {category}
           </span>
         </div>
 
-        {/* Boton interactivo para marcar como favorito */}
+        {/* Botón para marcar como favorito */}
         <button
           onClick={() => setIsLiked(!isLiked)}
           className="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/90 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors"
@@ -47,7 +47,7 @@ export function ProductCard({ name, description, price, image, category }) {
           />
         </button>
 
-        {/* Acceso rapido para agregar al carrito sobre la imagen */}
+        {/* Acceso rápido para añadir al carrito sobre la imagen */}
         <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full">
             <ShoppingCart className="w-4 h-4 mr-2" />
@@ -56,7 +56,7 @@ export function ProductCard({ name, description, price, image, category }) {
         </div>
       </div>
 
-      {/* Seccion de detalles del producto */}
+      {/* Sección de detalles del producto */}
       <div className="p-5">
         <h3 className="font-serif text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
           {name}
@@ -64,7 +64,7 @@ export function ProductCard({ name, description, price, image, category }) {
         <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
           {description}
         </p>
-        {/* Visualizacion del precio y boton de mas detalles */}
+        {/* Precio y botón de más detalles */}
         <div className="flex items-center justify-between">
           <p className="font-serif text-2xl font-bold text-primary">
             ${price.toLocaleString("es-CO")}
@@ -74,7 +74,7 @@ export function ProductCard({ name, description, price, image, category }) {
             variant="outline"
             className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary"
           >
-            Ver mas
+            Ver más
           </Button>
         </div>
       </div>

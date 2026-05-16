@@ -1,10 +1,10 @@
 "use client";
 
-/* Componente de caracteristicas o beneficios de ByteBakery */
+/* Componente de características o beneficios de ByteBakery */
 import { motion } from "framer-motion";
 import { Cake, Heart, Truck, Award } from "lucide-react";
 
-/* Definicion de los beneficios principales de la marca */
+/* Definición de los beneficios principales de la marca */
 const features = [
   {
     icon: Cake,
@@ -33,7 +33,7 @@ export function Features() {
     <section className="py-20 bg-muted/50">
       <div className="container mx-auto px-4">
         
-        {/* Titulo y descripcion de la seccion de caracteristicas */}
+        {/* Título y descripción de la sección de características */}
         <motion
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,14 +41,14 @@ export function Features() {
           className="text-center mb-16"
         >
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
-            ¿Por que elegir <span className="text-primary">ByteBakery</span>?
+            ¿Por qué elegir <span className="text-primary">ByteBakery</span>?
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Nos apasiona crear momentos dulces e inolvidables para ti y tu familia
           </p>
         </motion>
 
-        {/* Cuadricula de tarjetas de beneficios con animaciones de entrada */}
+        {/* Cuadrícula tarjetas de beneficios con animaciones de entrada */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <motion
@@ -59,7 +59,7 @@ export function Features() {
               transition={{ delay: index * 0.1 }}
               className="bg-card rounded-2xl p-8 text-center border border-border hover:shadow-lg transition-shadow"
             >
-              {/* Icono representativo del beneficio */}
+              {/* Ícono representativo del beneficio */}
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
                 <feature.icon className="w-8 h-8 text-primary" />
               </div>

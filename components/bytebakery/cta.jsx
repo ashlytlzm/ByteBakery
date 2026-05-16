@@ -1,6 +1,6 @@
 "use client";
 
-/* Componente de llamado a la accion (CTA) para eventos personalizados */
+/* Componente de llamado a la acción (CTA) para eventos personalizados */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -21,10 +21,10 @@ export function CTA() {
             ¿Tienes un evento especial?
           </h2>
           <p className="text-primary-foreground/90 text-lg mb-8 leading-relaxed">
-            Creamos postres personalizados para bodas, cumpleanos, baby showers y cualquier celebracion. Cuentanos tu idea y la haremos realidad.
+            Creamos postres personalizados para bodas, cumpleaños, baby showers y cualquier celebración. Cuéntanos tu idea y la haremos realidad.
           </p>
           
-          {/* Botones de accion para pedidos y contacto */}
+          {/* Botones de acción para pedidos y contacto */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/pedidos">
               <Button 
@@ -42,7 +42,7 @@ export function CTA() {
                 className="rounded-full px-8 h-14 text-lg border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Contactanos
+                Contáctanos
               </Button>
             </Link>
           </div>

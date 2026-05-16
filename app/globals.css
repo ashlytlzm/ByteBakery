@@ -1,10 +1,10 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* Paleta de colores y estilos base de ByteBakery */
+/* Paleta de colores y estilos base */
 :root {
-  --background: #fef4e4; /* crema vainilla */
-  --foreground: #3d2b2b; /* cafe */
+  --background: #fef4e4;
+  --foreground: #3d2b2b;
   
   --card: #ffffff;
   --card-foreground: #3d2b2b;
@@ -12,24 +12,24 @@
   --popover: #ffffff;
   --popover-foreground: #3d2b2b;
   
-  --primary: #7c3a5a; /* vino oscuro */
+  --primary: #7c3a5a;
   --primary-foreground: #ffffff;
   
-  --secondary: #f9e8ee; /* rosa palido */
+  --secondary: #f9e8ee;
   --secondary-foreground: #7c3a5a;
   
-  --muted: #f5e6f8; /* lavanda */
+  --muted: #f5e6f8;
   --muted-foreground: #7c3a5a;
   
-  --accent: #e8f5f0; /* menta */
+  --accent: #e8f5f0;
   --accent-foreground: #3d2b2b;
   
-  --border: #f9e8ee; /* rosa palido */
+  --border: #f9e8ee;
   --input: #f9e8ee;
   
-  --radius: 0.5rem; /* Radio de borde consistente en toda la app */
+  --radius: 0.5rem;
 
-  /* Sobreescritura de variables de Bootstrap para alineacion con la marca */
+  /* Sobreescritura de variables de Bootstrap */
   --bs-body-bg: var(--background);
   --bs-body-color: var(--foreground);
   --bs-primary: var(--primary);
@@ -39,7 +39,7 @@
   --bs-font-sans-serif: 'Lato', sans-serif;
 }
 
-/* Configuracion del tema para Tailwind CSS */
+/* Configuración del tema para Tailwind CSS */
 @theme inline {
   --font-sans: 'Lato', sans-serif;
   --font-serif: var(--font-playfair), 'Playfair Display', serif;
@@ -67,7 +67,7 @@
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-/* Boton oscuro con estilo redondeado tipo Crumbl */
+/* Botón oscuro */
 .btn-de-dark {
   background-color: #1a1a1a;
   color: #fff;
@@ -97,14 +97,14 @@
   box-shadow: 0 15px 30px rgba(124, 58, 90, 0.15) !important; /* sombra color vino */
 }
 
-/* Tipografia serif personalizada para titulos */
+/* Titulos */
 .font-serif {
   font-family: "Chango", sans-serif !important;
   font-weight: 400;
   font-style: normal;
 }
 
-/* Letra capital decorativa para parrafos especiales */
+/* Letra decorativa para párrafos */
 .drop-cap::first-letter {
   font-size: 3.5rem;
   font-weight: 400;
@@ -117,7 +117,7 @@
   font-style: normal;
 }
 
-/* Animacion de sacudida para errores de autenticacion */
+/* Animación de sacudida para errores de autenticación */
 @keyframes shake {
   0% { transform: translateX(0); }
   25% { transform: translateX(-5px); }

@@ -1,6 +1,6 @@
 "use client";
 
-/* Importamos las herramientas de imagen de Next y componentes comunes */
+/* Importar herramientas de imagen de Next, componentes comunes y animaciones */
 import Image from "next/image";
 import { Header } from "@/components/bytebakery/header";
 import { Footer } from "@/components/bytebakery/footer";
@@ -9,8 +9,8 @@ import { Heart, Award, Users, Sparkles } from "lucide-react";
 
 /* Integrantes del equipo academico del proyecto */
 const teamMembers = [
-  { name: "Andres Felipe Prada", role: "Lider del Proyecto / Backend", initial: "A" },
-  { name: "Ashly Sofia Toloza", role: "Frontend / Diseno", initial: "A" },
+  { name: "Andres Felipe Prada", role: "Líder del Proyecto / Backend", initial: "A" },
+  { name: "Ashly Sofia Toloza", role: "Frontend / Diseño", initial: "A" },
   { name: "Isabella Guevara", role: "Frontend / UX", initial: "I" },
   { name: "Luis Alejandro Vargas", role: "Backend", initial: "L" },
 ];
@@ -19,8 +19,8 @@ const teamMembers = [
 const values = [
   {
     icon: Heart,
-    title: "Pasion",
-    description: "Cada postre es hecho con amor y dedicacion, utilizando recetas artesanales transmitidas de generacion en generacion.",
+    title: "Pasión",
+    description: "Cada postre es hecho con amor y dedicación, utilizando recetas artesanales transmitidas de generación en generación.",
   },
   {
     icon: Award,
@@ -45,7 +45,7 @@ export default function NosotrosPage() {
       <Header />
       <main className="min-h-screen bg-background">
         
-        {/* Seccion de bienvenida con imagen de fondo y efecto de degradado */}
+        {/* Sección de bienvenida */}
         <section className="relative h-96 overflow-hidden">
           <Image
             src="/images/hero-bakery.jpg"
@@ -65,14 +65,14 @@ export default function NosotrosPage() {
                   Nuestra Historia
                 </h1>
                 <p className="text-white/90 text-lg leading-relaxed">
-                  ByteBakery nacio de la pasion por crear momentos dulces e inolvidables. Somos una reposteria artesanal dedicada a endulzar tus celebraciones.
+                  ByteBakery nació de la pasión por crear momentos dulces e inolvidables. Somos una reposteria artesanal dedicada a endulzar tus celebraciones.
                 </p>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Seccion detallada sobre la mision y vision de la empresa */}
+        {/* Sección sobre la misión y visión */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -82,13 +82,13 @@ export default function NosotrosPage() {
                 viewport={{ once: true }}
               >
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  Nuestra <span className="text-primary">Mision</span>
+                  Nuestra <span className="text-primary">Misión</span>
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6">
                   En ByteBakery nos dedicamos a crear postres artesanales que no solo deleiten el paladar, sino que tambien creen momentos especiales en la vida de nuestros clientes. Cada torta, cupcake y galleta es elaborada con ingredientes de primera calidad y mucho amor.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Nuestra vision es convertirnos en la reposteria preferida de Bucaramanga, reconocida por la excelencia de nuestros productos y el servicio excepcional que brindamos a cada cliente.
+                  Nuestra visión es convertirnos en la reposteria preferida de Bucaramanga, reconocida por la excelencia de nuestros productos y el servicio excepcional que brindamos a cada cliente.
                 </p>
               </motion.div>
               <motion.div
@@ -108,7 +108,7 @@ export default function NosotrosPage() {
           </div>
         </section>
 
-        {/* Seccion de valores corporativos con iconos representativos */}
+        {/* Sección de valores corporativos */}
         <section className="py-20 bg-muted/50">
           <div className="container mx-auto px-4">
             <motion.div
@@ -121,7 +121,7 @@ export default function NosotrosPage() {
                 Nuestros <span className="text-primary">Valores</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Los principios que guian cada postre que creamos
+                Los principios que guían cada postre que creamos
               </p>
             </motion.div>
 
@@ -150,7 +150,7 @@ export default function NosotrosPage() {
           </div>
         </section>
 
-        {/* Seccion de presentacion del equipo de desarrollo */}
+        {/* Sección de presentación del equipo */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <motion.div
@@ -163,7 +163,7 @@ export default function NosotrosPage() {
                 Nuestro <span className="text-primary">Equipo</span>
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                El talento detras de ByteBakery - Proyecto academico UIS 2026
+                El talento detrás de ByteBakery - Proyecto académico UIS 2026
               </p>
             </motion.div>
 
@@ -192,7 +192,7 @@ export default function NosotrosPage() {
               ))}
             </div>
 
-            {/* Pie de seccion con informacion academica */}
+            {/* Pie de sección con información académica */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -202,7 +202,7 @@ export default function NosotrosPage() {
               <p className="text-muted-foreground">
                 <span className="font-semibold text-foreground">Universidad Industrial de Santander</span>
                 <br />
-                Programacion en la Web - Abril 2026
+                Programación en la Web - Abril 2026
               </p>
             </motion.div>
           </div>
