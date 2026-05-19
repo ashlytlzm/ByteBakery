@@ -1,0 +1,19 @@
+·· ANEXO 1 — PRINCIPIOS EMPLEADOS PARA REALIZAR UN FRONTEND
+
+
+A nivel de ingeniería e implementación, la interfaz de ByteBakery se rige por los estándares más modernos de desarrollo web, asegurando no solo que se vea bien, sino que sea rápida, escalable y accesible.
+
+Diseño Modular y "Atomic Design": La interfaz no está construida como páginas rígidas, sino como un rompecabezas de componentes independientes y reutilizables (botones, tarjetas de productos, alertas) alojados en la carpeta components/ui. Esto garantiza consistencia en toda la aplicación y facilita el mantenimiento del código.
+
+Enfoque "Mobile-First" (Responsive Web Design): Entendiendo que la mayoría del tráfico actual proviene de smartphones, la interfaz se diseñó pensando primero en pantallas pequeñas y escalando hacia monitores de escritorio (usando el sistema de grillas y breakpoints de Tailwind CSS). La experiencia es fluida sin importar el dispositivo.
+
+Rendimiento y Carga Optimizada (Web Performance): Tratándose de una tienda visual, las imágenes son críticas. El uso de la arquitectura de Next.js permite cargar imágenes optimizadas de forma diferida (Lazy Loading) y pre-renderizar páginas estáticas (SSG / SSR), asegurando tiempos de carga ultrarrápidos, lo cual es vital para la retención del cliente y el SEO (posicionamiento en buscadores).
+
+Accesibilidad (A11y): El diseño no excluye a nadie. Se garantiza un alto nivel de contraste entre el texto y el fondo (cumpliendo estándares WCAG AA/AAA). Además, la estructura HTML utiliza etiquetas semánticas (<header>, <nav>, <main>, <article>) que permiten a los lectores de pantalla interpretar correctamente la web para usuarios con discapacidades visuales.
+
+Fricción Reducida (Frictionless UX): En el comercio electrónico, cada paso extra reduce las ventas. El flujo de compra de ByteBakery está diseñado minimizando la carga cognitiva (Ley de Hick): el carrito de compras es fácilmente accesible desde cualquier lugar (Navbar fija), los formularios de registro son concisos y los botones de "Llamado a la Acción" (Call to Action / CTA) son claros y omnipresentes.
+
+Sistema de Diseño Consistente: Se utiliza un sistema de tokens de diseño para mantener la uniformidad. Los espaciados, bordes redondeados y tamaños de texto siguen una escala matemática estricta definida globalmente, lo que evita desajustes visuales entre diferentes vistas de la aplicación.
+
+
+Más acerca del proceso de diseño en la sección correspondiente del archivo .pdf adjunto con el proyecto.
